@@ -5,7 +5,7 @@ if ( $< != 0 ) {
 	exit (0);
 }
 
-print "This script builds the Alfheim Linux Live disc!\n\n";
+print "This script builds the Alfheim Linux systemd Live disc!\n\n";
 print "It is part of the Alfheim Software Initiative.\nIt is released under the HLIN Public License v.2.0.\n";
 print "########################################################################\n";
 print "#                        HLIN Public License v.2.0                     #\n";
@@ -44,45 +44,3 @@ print "# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR #\
 print "# IN CONNECTION WITH THE SOFTWARE, DOCUMENTATION, AND/OR WORKS OR THE  #\n";
 print "# USE OR OTHER DEALINGS IN THE SOFTWARE, DOCUMENTATION, AND/OR WORKS.  #\n";
 print "########################################################################\n";
-
-use strict;
-use warnings;
-
-sub menu {
-	my @items = @_;
-
-	my $count = 0;
-	foreach my $item( @items ) {
-		printf "%d: %s\n", ++$count, $item->{text};
-	}
-
-	print "\nChoose an option?: ";
-
-	while( my $line = <STDIN> ) {
-		chomp $line;
-		if ( $line =~ m/\d+/ && $line <= @items ) {
-			return $items[ $line - 1 ]{code}->();
-		}
-
-		print "\nInvalid input\n\n?: ";
-	}
-}
-
-my @menu_choices;
-my @other_menu_choices;
-
-@menu_choices = (
-	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/alnsd') } },
-	{ text  => 'Create a systemd disc (discouraged)',
-		code  => sub { exec ('scripts/alsd') } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-@other_menu_choices = (
-	{ text => 'Main Menu',
-	  code => sub { menu( @menu_choices ) } }
-);
-
-menu( @menu_choices );
