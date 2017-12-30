@@ -72,9 +72,7 @@ chomp $iso_name;
 print "Enter your iso label (ie... ALNSD_BETA): \n";
 my $iso_label = <STDIN>;
 chomp $iso_label;
-print "Efailed to initialize alpm library
-nter your iso version (ie... 1.0.0): \n";failed to initialize alpm library
-
+print "Enter your iso version (ie... 1.0.0): \n";
 my $iso_version = <STDIN>;
 chomp $iso_version;
 my $iso_title = "$iso_name-$iso_label\_$arch-$iso_version.iso";
@@ -94,6 +92,6 @@ system('/usr/bin/chmod a+x chroot.sh');
 
 mkpath "work/airootfs/var/lib/pacman";
 
-system('/usr/bin/yaourt --config pacman.conf -r work/airootfs -Sy base syslinux');
+system("/usr/bin/yaourt --config $script_path/pacman.conf -r work/airootfs -Sy base syslinux");
 system 'cp' , 'chroot.sh' , 'work/airootfs/usr/bin/';
 system('/usr/bin/chroot work/airootfs /bin/bash \'chroot.sh\'');
