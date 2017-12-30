@@ -1,0 +1,5 @@
+# Worldwide mirrors
+Server = https://mirrors.dotsrc.org/artix-linux/repos/$repo/os/$arch
+Server = http://mirror.strits.dk/artix-linux/repos/$repo/os/$arch
+Server = https://artix.mief.nl/repos/$repo/os/$arch
+Server = http://mirror1.artixlinux.org/artix-linux/repos/$repo/os/$arch

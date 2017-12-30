@@ -48,6 +48,8 @@ print "########################################################################\
 use strict;
 use warnings;
 
+my $script_path = \$ENV{PWD};
+
 sub menu {
 	my @items = @_;
 

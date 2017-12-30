@@ -55,3 +55,45 @@ print "may use on a regular basis may not be installed right out of\n";
 print "the gate but we will do our best to accomodate you.\n";
 
 print "\nThank you for choosing to be a part of the Alfheim family!\n";
+
+use Cwd;
+use POSIX;
+use File::Path;
+use strict;
+use warnings;
+
+my $script_path = cwd();
+
+my $arch = (POSIX::uname)[4];
+
+print "Enter a name for your iso: \n";
+my $iso_name = <STDIN>;
+chomp $iso_name;
+print "Enter your iso label (ie... ALNSD_BETA): \n";
+my $iso_label = <STDIN>;
+chomp $iso_label;
+print "Efailed to initialize alpm library
+nter your iso version (ie... 1.0.0): \n";failed to initialize alpm library
+
+my $iso_version = <STDIN>;
+chomp $iso_version;
+my $iso_title = "$iso_name-$iso_label\_$arch-$iso_version.iso";
+print "Your iso will be named $iso_title\n";
+
+
+mkdir "work";
+
+open(my $cb, '>', 'chroot.sh');
+print $cb "\#\!\/usr\/bin\/bash\n\n";
+print $cb "useradd -d \/home\/archlive -G wheel -p archlive archlive\n";
+print $cb "mkdir \/home\/archlive\n";
+print $cb "chown archlive \/home\/archlive\n";
+close $cb;
+
+system('/usr/bin/chmod a+x chroot.sh');
+
+mkpath "work/airootfs/var/lib/pacman";
+
+system('/usr/bin/yaourt --config pacman.conf -r work/airootfs -Sy base syslinux');
+system 'cp' , 'chroot.sh' , 'work/airootfs/usr/bin/';
+system('/usr/bin/chroot work/airootfs /bin/bash \'chroot.sh\'');
