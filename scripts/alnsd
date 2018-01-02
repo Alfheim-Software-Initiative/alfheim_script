@@ -54,11 +54,12 @@ print "that we can to suit your needs.  A lot of the software that\n";
 print "may use on a regular basis may not be installed right out of\n";
 print "the gate but we will do our best to accomodate you.\n";
 
-print "\nThank you for choosing to be a part of the Alfheim family!\n";
+print "\nThank you for choosing to be a part of the Alfheim family!\n\n\n";
 
 use Cwd;
 use POSIX;
 use File::Path;
+use File::Slurp;
 use strict;
 use warnings;
 
@@ -78,20 +79,29 @@ chomp $iso_version;
 my $iso_title = "$iso_name-$iso_label\_$arch-$iso_version.iso";
 print "Your iso will be named $iso_title\n";
 
-
 mkdir "work";
 
-open(my $cb, '>', 'chroot.sh');
-print $cb "\#\!\/usr\/bin\/bash\n\n";
-print $cb "useradd -d \/home\/archlive -G wheel -p archlive archlive\n";
-print $cb "mkdir \/home\/archlive\n";
-print $cb "chown archlive \/home\/archlive\n";
-close $cb;
-
-system('/usr/bin/chmod a+x chroot.sh');
+system('/usr/bin/chmod a+x pre-config.sh');
 
 mkpath "work/airootfs/var/lib/pacman";
 
-system("/usr/bin/yaourt --config $script_path/pacman.conf -r work/airootfs -Sy base syslinux");
-system 'cp' , 'chroot.sh' , 'work/airootfs/usr/bin/';
-system('/usr/bin/chroot work/airootfs /bin/bash \'chroot.sh\'');
+system("/usr/bin/yaourt --config $script_root/pacman.conf -r work/airootfs -Sy base syslinux");
+system 'cp' , 'pre-config.sh' , 'work/airootfs/usr/bin/';
+
+## Note all packages besides base and syslinux should be placed in packages
+## and should be available in the main repositories, this part cannot install
+## AUR packages into the chroot environment.
+
+$/ = undef; #set input record seperator to null[default \n]
+
+open("FIN","<$script_root/packages") or die "cant open :$!\n";
+my $content = <FIN>; #Whole file content in a single scalar variable
+close(FIN);
+
+foreach my $line (split /\n/ ,$content) {
+	system("/usr/bin/yaourt --config $script_root/pacman.conf -r work/airootfs -Sy --needed $line");
+}
+
+## All configuration of the environment happens at this point including
+## the installation of AUR packages
+system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
