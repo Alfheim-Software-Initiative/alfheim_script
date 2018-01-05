@@ -79,7 +79,7 @@ my @other_menu_choices;
 	{ text  => 'Create a non-systemd disc (preferred)',
 		code  => sub { exec ('scripts/alnsd/alnsd') } },
 	{ text  => 'Create a systemd disc (discouraged)',
-		code  => sub { exec ('scripts/alsd') } },
+		code  => sub { exec ('scripts/alsd/alsd') } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
 );

@@ -1,3 +1,0 @@
-base-devel artix-keyring openrc-system grub linux-headers systemd-dummy libsystemd-dummy openrc-world
-acpid-openrc alsa-utils-openrc autofs-openrc cronie-openrc cups-openrc displaymanager-openrc fuse-openrc haveged-openrc hdparm-openrc openssh-openrc samba-openrc syslog-ng-openrc
-openbox networkmanager guake compton package-query yaourt

@@ -91,24 +91,24 @@ my $script_root = \$ENV{PWD};
 
 mkpath "work/out";
 
-system('/usr/bin/chmod a+x pre-config.sh');
-system('/usr/bin/chmod a+x packages');
+system('/usr/bin/chmod a+x scripts/alnsd/pre-config.sh');
+system('/usr/bin/chmod a+x scripts/alnsd/packages');
 
 mkpath "work/airootfs/var/lib/pacman";
 mkdir "work/airootfs/etc/initcpio/hooks";
 mkdir "work/airootfs/etc/initcpio/install";
 
-system('/usr/bin/yaourt --config pacman.conf -r work/airootfs -Sy base syslinux package-query yaourt');
-system 'cp' , 'packages' , 'work/airootfs/usr/bin/';
-system 'cp' , 'pre-config.sh' , 'work/airootfs/usr/bin/';
-system 'cp' , 'mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
-system 'cp' , 'pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
-system('cp -rf pacman.d work/airootfs/etc/');
-system 'cp' , 'customize_airootfs.sh' , 'work/airootfs/usr/bin';
+system('/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy base syslinux package-query yaourt');
+system 'cp' , 'scripts/alnsd/packages' , 'work/airootfs/usr/bin/';
+system 'cp' , 'scripts/alnsd/pre-config.sh' , 'work/airootfs/usr/bin/';
+system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
+system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
+system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
+system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
 system('umount -l work/airootfs');
-system('cp -rf skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/archlive/');
+system('cp -rf scripts/alnsd/skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/archlive/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
 system('umount -l work/airootfs');
 
@@ -126,7 +126,7 @@ system('cp -rf work/airootfs/boot/memtest86+/memtest.bin work/iso/alfheim/boot/m
 system('cp -rf work/airootfs/usr/share/licenses/common/GPL2/license.txt work/iso/alfheim/boot/memtest.COPYING');
 system('cp -rf work/airootfs/boot/intel-ucode.img work/iso/alfheim/boot/intel_ucode.img');
 system('cp -rf work/airootfs/usr/share/licenses/intel-ucode/LICENSE work/iso/alfheim/boot/intel_ucode.LICENSE');
-system('cp -rf syslinux/splash.png work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/splash.png work/iso/alfheim/boot/syslinux/');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/*.c32 work/iso/alfheim/boot/syslinux');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/lpxelinux.0 work/iso/alfheim/boot/syslinux');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/memdisk work/iso/alfheim/boot/syslinux');
@@ -139,7 +139,7 @@ system('gzip -c -9 work/airootfs/usr/lib/modules/*-ARCH/modules.alias > work/iso
 ## Here we create isolinux and move alfheim into the iso directory
 mkpath 'work/iso/isolinux';
 
-system('cp -rf isolinux.cfg work/iso/isolinux/');
+system('cp -rf scripts/alnsd/isolinux.cfg work/iso/isolinux/');
 system('cp work/airootfs/usr/lib/syslinux/bios/isolinux.bin work/iso/isolinux/');
 system('cp work/airootfs/usr/lib/syslinux/bios/isohdpfx.bin work/iso/isolinux/');
 system('cp work/airootfs/usr/lib/syslinux/bios/ldlinux.c32 work/iso/isolinux/');
@@ -154,11 +154,11 @@ system('cp -rf work/airootfs/usr/share/efitools/efi/Loader.efi work/iso/EFI/boot
 
 mkpath 'work/iso/loader/entries';
 
-system('cp -rf efiboot/loader/loader.conf work/iso/loader/');
-system('cp -rf efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/iso/loader/entries/');
-system('cp -rf efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/iso/loader/entries/');
+system('cp -rf scripts/alnsd/efiboot/loader/loader.conf work/iso/loader/');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/iso/loader/entries/');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/iso/loader/entries/');
 
-system('cp -rf efiboot/loader/entries/archiso-x86_64-usb.conf work/iso/loader/entries/archiso-x86_64.conf');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/archiso-x86_64-usb.conf work/iso/loader/entries/archiso-x86_64.conf');
 
 # EFI Shell 2.0 for UEFI 2.3+
 system('curl -o work/iso/EFI/shellx64_v2.efi https://raw.githubusercontent.com/tianocore/edk2/master/ShellBinPkg/UefiShell/X64/Shell.efi');
@@ -185,11 +185,11 @@ system('cp -rf work/airootfs/usr/share/efitools/efi/HashTool.efi work/efiboot/EF
 system('cp -rf work/airootfs/usr/share/efitools/efi/Loader.efi work/efiboot/EFI/boot/loader.efi');
 
 mkpath 'work/efiboot/loader/entries';
-system('cp -rf efiboot/loader/loader.conf work/efiboot/loader/');
-system('cp -rf efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/efiboot/loader/entries/');
-system('cp -rf efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/efiboot/loader/entries/');
+system('cp -rf scripts/alnsd/efiboot/loader/loader.conf work/efiboot/loader/');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/efiboot/loader/entries/');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/efiboot/loader/entries/');
 
-system('cp -rf efiboot/loader/entries/archiso-x86_64-cd.conf work/efiboot/loader/entries/archiso-x86_64.conf');
+system('cp -rf scripts/alnsd/efiboot/loader/entries/archiso-x86_64-cd.conf work/efiboot/loader/entries/archiso-x86_64.conf');
 
 system('cp -rf work/iso/EFI/shellx64_v2.efi work/efiboot/EFI/');
 system('cp work/iso/EFI/shellx64_v1.efi work/efiboot/EFI/');
