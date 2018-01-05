@@ -77,7 +77,7 @@ my @other_menu_choices;
 
 @menu_choices = (
 	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/alnsd') } },
+		code  => sub { exec ('scripts/alnsd/alnsd') } },
 	{ text  => 'Create a systemd disc (discouraged)',
 		code  => sub { exec ('scripts/alsd') } },
 	{ text  => 'Exit',
