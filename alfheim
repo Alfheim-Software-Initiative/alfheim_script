@@ -50,7 +50,7 @@ use warnings;
 
 my $script_path = \$ENV{PWD};
 
-system('cpan install File::Slurp')
+system('cpan install File::Slurp');
 
 sub menu {
 	my @items = @_;
