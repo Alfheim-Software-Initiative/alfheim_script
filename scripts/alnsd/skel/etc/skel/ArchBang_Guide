@@ -1,0 +1,104 @@
+Welcome to ArchBang linux
+
+Information here is as up to date as possible.
+
+===Pacman===
+
+Pacman will not work live correctly until you set up your local mirror. Open a terminal [Super+t] and run:
+
+	sudo l3afpad /etc/pacman.d/mirrorlist
+
+Uncomment your nearest server to your country/region and then run:
+
+	sudo pacman -Syyu
+
+This will refresh package database and allow you to install any package available.
+
+	sudo pacman -S <package_name>
+
+====Installation====
+
+ArchBang comes with a menu driven installer abinstall to install simply open a terminal [Super+t] and run
+
+	sudo abinstall
+
+If you want to transfer live image then you can use fast-install, it simply copies running image (including any changes).
+
+	sudo fast-install
+
+Note drives must have partitions and filesystems created first.
+
+====Video drivers====
+
+This is optional remove xorg video drivers that were shipped with ArchBang by typing:
+
+Note the following drivers listed may not be up to date
+
+You can check what drivers you have installed by running
+
+ pacman -Qq | grep xf86-video
+
+ sudo pacman -R xf86-video-apm xf86-video-ark xf86-video-ast\
+ xf86-video-ati xf86-video-chips xf86-video-cirrus\
+ xf86-video-dummy xf86-video-fbdev xf86-video-glint\
+ xf86-video-i128 xf86-video-i740 xf86-video-intel-uxa\
+ xf86-video-mach64 xf86-video-mga xf86-video-neomagic\
+ xf86-video-nv xf86-video-r128 xf86-video-rendition\
+ xf86-video-s3 xf86-video-s3virge xf86-video-savage\
+ xf86-video-siliconmotion xf86-video-sis xf86-video-sisusb\
+ xf86-video-tdfx xf86-video-trident xf86-video-tseng\
+ xf86-video-v4l xf86-video-vesa xf86-video-vmware\
+ xf86-video-voodoo xf86-video-xgi xf86-video-xgixp\
+ ati-dri intel-dri mach64-dri mga-dri r128-dri\
+ savage-dri sis-dri tdfx-dri
+
+To know your video chipset type in terminal
+
+  lspci | grep VGA
+
+Track it down in the list by typing in terminal as root:
+
+ pacman -Ss xf86-video | less
+
+Install your video driver:
+
+ pacman -S your_video_driver
+
+====Resolution====
+Go in Preferences>Screen Resolution
+
+====Maximum Brightness====
+If you want maximum brightness at boot, uncomment the following in
+~/.config/openbox/autostart
+ xbacklight -set 100 &
+
+====Sound====
+
+If you don't get any sound you can right click on volume icon on panel then
+'Open Mixer' or in a terminal run
+ alsamixer
+To unmute a channel press M to raise levels use up and down keys. To exit and
+save hit Escape key
+
+====Disable Blank Screen After 10 Minutes====
+
+To disable blank screen after 10 minutes of inactivity, create a file in
+/etc/X11/xorg.conf.d called custom.conf with this code:
+
+ Section "ServerFlags"
+ # disable low-level screensaver and screen DPMS poweroff
+    Option "BlankTime" "0"
+    Option "StandbyTime" "0"
+    Option "SuspendTime" "0"
+    Option "OffTime" "0"
+ EndSection
+
+====Update the system====
+
+Open a terminal [Super+t] and type:
+  sudo pacman -Syyu
+
+====Have Fun!====
+
+Everything about Arch isn't covered in this guide of course so check the Arch Wiki [https://wiki.archlinux.org/]
+

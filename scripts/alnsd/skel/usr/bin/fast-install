@@ -1,0 +1,54 @@
+#!/bin/bash
+# basic quick install script based on obarun manual install
+# ::preface install target device is mounted and has filesystems created to /mnt::
+#
+# by Mr Green
+#
+# Edited by Arrogant Wombaticus 2017
+# for Alfheim Linux
+#
+
+# Device mounted?
+if ! mountpoint -q /mnt; then
+    echo "Make sure target device is mounted..."
+    exit 1
+fi
+
+# check for root
+[[ ${EUID} -ne 0 ]] && echo "::This script must be run as root::" && exit 1
+
+# Variables
+ACM="arch-chroot /mnt"
+ROOT_DEV=$(df | grep -w /mnt | awk {'print $1'})
+
+# copy live iso environment to /mnt (new install device)
+echo "Copy live root image to /mnt "
+cp -ax / /mnt
+
+# copy kernel to new install
+echo "Add kernel to new install..."
+cp -vaT /run/archiso/bootmnt/arch/boot/$(uname -m)/vmlinuz /mnt/boot/vmlinuz-linux
+
+# generate fstab for new device
+echo "Create /etc/fstab..."
+genfstab -U -p /mnt > /mnt/etc/fstab
+
+# remake boot image
+echo "Rebuild boot image..."
+${ACM} /usr/bin/mkinitcpio -p linux
+
+# Install syslinux bootloader (optional)
+echo "Add syslinux bootloader..."
+${ACM} /usr/bin/syslinux-install_update -iam
+sed -i "s|/dev/sda[0-9]|${ROOT_DEV}|g" /mnt/boot/syslinux/syslinux.cfg
+
+# clean up new install, basically removing archiso files that are needed live
+echo "Clean new install..."
+rm /mnt/etc/mkinitcpio-archiso.conf
+rm -r /mnt/etc/initcpio
+
+arch-chroot /mnt pacman -Sy linux
+arch-chroot /mnt grub-install --target=i386-pc /dev/sda
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "::Install complete::"

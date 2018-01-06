@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# ifplugd.action script for netcfg
+
+. /usr/lib/network/network
+
+case "$2" in
+  up)
+    # Look for a dhcp based profile to try first
+    # dhcp can actually outright fail, whereas
+    # it's difficult to tell if static succeeded
+    # Also check profile is same iface and is right connection
+    echo "up"
+    declare -a preferred_profiles
+    declare -a dhcp_profiles
+    declare -a static_profiles
+    for profile in $(list_profiles); do
+      (
+        echo "loading $profile"
+        load_profile "$profile"
+        [[ "$INTERFACE" == "$1" && "$CONNECTION" == "ethernet" ]] || continue
+        checkyesno "${AUTO_WIRED:-no}" && exit 1 # user preferred AUTO profile
+        [[ "$IP" == "dhcp" ]] && exit 2 # dhcp profile
+        exit 3 # static profile
+      )
+      case $? in
+        1) preferred_profiles+=("$profile");;
+        2) dhcp_profiles+=("$profile");;
+        3) static_profiles+=("$profile");;
+      esac
+    done
+    if [[ ${#preferred_profiles[@]} > 1 ]]; then
+      echo "AUTO_WIRED flag for $1 set in more than one profile (${preferred_profiles[*]})"
+    fi
+    for profile in "${preferred_profiles[@]}" "${dhcp_profiles[@]}" "${static_profiles[@]}"; do
+      profile_up "$profile" && exit 0
+    done
+  ;;
+  down)
+    if check_iface "$1"; then
+      interface_down "$1" && exit 0
+    fi
+  ;;
+  *)
+    echo "Wrong arguments" > /dev/stderr
+  ;;
+esac
+
+exit 1

@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<gconf>
+	<dir name="schemas">
+		<dir name="apps">
+			<dir name="gksu">
+				<entry name="save-keyring" mtime="1501957250" type="schema" stype="string" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Keyring to which passwords will be saved">
+						<default type="string">
+							<stringvalue>session</stringvalue>
+						</default>
+						<longdesc>
+	The name of the keyring gksu should use. Usual values are &quot;session&quot;,
+	which saves the password for the session, and &quot;default&quot;, which saves the
+	password with no timeout.
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="save-to-keyring" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Save password to gnome-keyring">
+						<default type="bool" value="true"/>
+						<longdesc>
+	gksu can save the password you type to the gnome-keyring so you&apos;ll
+	not be asked everytime
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="display-no-pass-info" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Display information message when no password is needed">
+						<default type="bool" value="true"/>
+						<longdesc>
+	This option determines whether a message dialog will be displayed
+	informing the user that the program is being run without the need
+	of a password being asked for some reason.
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="prompt" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Prompt for grabbing">
+						<default type="bool" value="false"/>
+						<longdesc>
+	This option will make gksu prompt the user if he wants to have
+	the screen grabbed before entering the password. Notice that this
+	only has an effect if force-grab is disabled.
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="sudo-mode" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Sudo mode">
+						<default type="bool" value="false"/>
+						<longdesc>
+	Whether sudo should be the default backend method. This method
+        is otherwise accessed though the -S switch or by running &apos;gksudo&apos;
+        instead of &apos;gksu&apos;.
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="force-grab" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Force keyboard and mouse grab">
+						<default type="bool" value="false"/>
+						<longdesc>
+	Grab keyboard and mouse even if -g has been passed as argument
+	on the command line.
+	</longdesc>
+					</local_schema>
+				</entry>
+				<entry name="disable-grab" mtime="1501957250" type="schema" stype="bool" owner="gksu" gettext_domain="libgksu">
+					<local_schema locale="C" short_desc="Disable keyboard and mouse grab">
+						<default type="bool" value="false"/>
+						<longdesc>
+	Whether the keyboard and mouse grabbing should be turned
+	off. This will make it possible for other X applications to
+	listen to keyboard input events, thus making it not possible
+	to shield from malicious applications which may be running.
+	</longdesc>
+					</local_schema>
+				</entry>
+			</dir>
+			<dir name="guake">
+				<dir name="keybindings">
+					<dir name="local">
+						<entry name="toggle_hide_on_lose_focus" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Toggle hide on lose focus.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;h</stringvalue>
+								</default>
+								<longdesc>Toggle whether guake will hide when it loses focus.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="toggle_fullscreen" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Toggle Fullscreen.">
+								<default type="string">
+									<stringvalue>F11</stringvalue>
+								</default>
+								<longdesc>Toggle main guake window fullscreen.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="clipboard_paste" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Paste clipboard.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;v</stringvalue>
+								</default>
+								<longdesc>Paste the clipboard content.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="clipboard_copy" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Copy clipboard.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;c</stringvalue>
+								</default>
+								<longdesc>Copy the clipboard content.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="toggle_transparency" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Toggle transparency.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Alt&gt;T</stringvalue>
+								</default>
+								<longdesc>Toggle the terminal transparency from the actual level to 100% and vice versa.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="decrease_transparency" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Decrease transparency.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Shift&gt;Down</stringvalue>
+								</default>
+								<longdesc>Decrease the terminal transparency.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="increase_transparency" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Increase transparency.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Shift&gt;Up</stringvalue>
+								</default>
+								<longdesc>Increase the terminal transparency.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="decrease_height" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Decrease height.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Up</stringvalue>
+								</default>
+								<longdesc>Decrease the screen height.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="increase_height" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Increase height.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Down</stringvalue>
+								</default>
+								<longdesc>Increase the screen height.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="zoom_out" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Zoom out.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;minus</stringvalue>
+								</default>
+								<longdesc>Decrease the font size of the terminals.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="zoom_in_alt" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Zoom in (alternative)">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;equal</stringvalue>
+								</default>
+								<longdesc>Additional shortcut for zooming in.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="zoom_in" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Zoom in.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;plus</stringvalue>
+								</default>
+								<longdesc>Increase the font size of the terminals.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="rename_current_tab" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Rename current tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F2</stringvalue>
+								</default>
+								<longdesc>Shows a dialog to rename the current tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab_last" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Last tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F12</stringvalue>
+								</default>
+								<longdesc>Switch to the last tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab10" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Tenth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F10</stringvalue>
+								</default>
+								<longdesc>Switch to the tenth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab9" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Ninth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F9</stringvalue>
+								</default>
+								<longdesc>Switch to the ninth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab8" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="eighth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F8</stringvalue>
+								</default>
+								<longdesc>Switch to the eighth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab7" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Seventh tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F7</stringvalue>
+								</default>
+								<longdesc>Switch to the seventh tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab6" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Sixth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F6</stringvalue>
+								</default>
+								<longdesc>Switch to the sixth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab5" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Fifth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F5</stringvalue>
+								</default>
+								<longdesc>Switch to the fifth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab4" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Fourth tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F4</stringvalue>
+								</default>
+								<longdesc>Switch to the fourth tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab3" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Third tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F3</stringvalue>
+								</default>
+								<longdesc>Switch to the third tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab2" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Second tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F2</stringvalue>
+								</default>
+								<longdesc>Switch to the second tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="switch_tab1" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="First tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;F1</stringvalue>
+								</default>
+								<longdesc>Switch to the first tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="next_tab" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Next tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Page_Down</stringvalue>
+								</default>
+								<longdesc>Shows the next tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="previous_tab" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Previous tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Page_Up</stringvalue>
+								</default>
+								<longdesc>Shows the previous tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="move_tab_right" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Move right current tab">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Shift&gt;Page_Down</stringvalue>
+								</default>
+								<longdesc>Move the current tab to the right</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="move_tab_left" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Move left current tab">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;Shift&gt;Page_Up</stringvalue>
+								</default>
+								<longdesc>Move the current tab to the left</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="search_on_web" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Search current selected text on the web">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;l</stringvalue>
+								</default>
+								<longdesc>Accelerator to active function that search on the web the current selected text on the terminal.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="close_tab" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Closes the current tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;w</stringvalue>
+								</default>
+								<longdesc>Accelerator to active function that closes the current selected tab.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="new_tab" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Add a new tab.">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;t</stringvalue>
+								</default>
+								<longdesc>Calls the function to add a new tab in guake window.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="quit" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Quit">
+								<default type="string">
+									<stringvalue>&lt;Control&gt;&lt;Shift&gt;q</stringvalue>
+								</default>
+								<longdesc>Quit Guake.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="reset_terminal" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Reset">
+								<default type="string">
+									<stringvalue></stringvalue>
+								</default>
+								<longdesc>Reset terminal</longdesc>
+							</local_schema>
+						</entry>
+					</dir>
+					<dir name="global">
+						<entry name="show_hide" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Keybinding to show/hide guake.">
+								<default type="string">
+									<stringvalue>F12</stringvalue>
+								</default>
+								<longdesc>Global keybinding to allow user call guake from each
+                place after it&apos;s opened without clicks.</longdesc>
+							</local_schema>
+						</entry>
+					</dir>
+				</dir>
+				<dir name="style">
+					<entry name="cursor_shape" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Cursor shape of the terminal">
+							<default type="int" value="0"/>
+							<longdesc>Controls the shape of the cursor in the terminals. 0: Block, 1: I-Beam, 2: Underline</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="cursor_blink_mode" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Cursor blink mode of the terminal">
+							<default type="int" value="0"/>
+							<longdesc>Controls the blink mode of the cursor in the terminals. 0: Follow GTK+ setting, 1: Blink on, 2: Blink off</longdesc>
+						</local_schema>
+					</entry>
+					<dir name="background">
+						<entry name="transparency" mtime="1498812138" type="schema" stype="int" owner="guake">
+							<local_schema locale="C" short_desc="Background transparency.">
+								<default type="int" value="10"/>
+								<longdesc>Alpha that will be applied to the terminal
+                background.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="image" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Background image.">
+								<default type="string">
+									<stringvalue></stringvalue>
+								</default>
+								<longdesc>Background image that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="color" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Background color.">
+								<default type="string">
+									<stringvalue>#000000000000</stringvalue>
+								</default>
+								<longdesc>Background color that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+					</dir>
+					<dir name="font">
+						<entry name="allow_bold" mtime="1498812138" type="schema" stype="bool" owner="guake">
+							<local_schema locale="C" short_desc="Allow displaying bold font in Guake terminal">
+								<default type="bool" value="true"/>
+								<longdesc>When allow_bold is disabled, any text in Guake terminal
+                intended to print as bold text will be instead rendered as
+                normal text.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="palette_name" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Color scheme name.">
+								<default type="string">
+									<stringvalue>Tango</stringvalue>
+								</default>
+								<longdesc>Color scheme name that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="palette" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Color scheme.">
+								<default type="string">
+									<stringvalue>#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec</stringvalue>
+								</default>
+								<longdesc>Color scheme that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="color" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Font color.">
+								<default type="string">
+									<stringvalue>#ffffffffffff</stringvalue>
+								</default>
+								<longdesc>Font color that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+						<entry name="style" mtime="1498812138" type="schema" stype="string" owner="guake">
+							<local_schema locale="C" short_desc="Font style.">
+								<default type="string">
+									<stringvalue>Monospace 10</stringvalue>
+								</default>
+								<longdesc>Font face and size that will be used in terminal.</longdesc>
+							</local_schema>
+						</entry>
+					</dir>
+				</dir>
+				<dir name="general">
+					<entry name="custom_command_file" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Path to the default custom command json file.">
+							<default type="string">
+								<stringvalue>~/.config/guake/custom_command.json</stringvalue>
+							</default>
+							<longdesc>Path to the default custom command json file.
+                If is blank or the json file is not in a proper format
+                the terminal context menu will be built without custom commands.
+                If the file is a valid json with recognized structure theterminak
+                context menu will be buit with the commands read inside.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="focus_if_open" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Give focus to guake if tab is opened (OBSOLETE).">
+							<default type="bool" value="true"/>
+							<longdesc>If the guake window is out of focus but open,
+                enabling this will give it back the focus instead of closing the window.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="toolbar_visible_in_fullscreen" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="If the tabs bar must be visible in fullscreen">
+							<default type="bool" value="true"/>
+							<longdesc>Set it as false to enjoy guake&apos;s fullscreen.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="show_resizer" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="If guake must show a control to make resizing more handful">
+							<default type="bool" value="true"/>
+							<longdesc>When true, guake shows a resizer on its bottom to allow user
+                resize guake.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="word_chars" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Characters that are considered &quot;part of a word&quot;">
+							<default type="string">
+								<stringvalue>-A-Za-z0-9,./?%&amp;#:_~</stringvalue>
+							</default>
+							<longdesc>When selecting text by word, sequences of these
+                characters are considered single words. Ranges can be
+                given as &quot;A-Z&quot;. Literal hyphen (not expressing a
+                range) should be the first character given. </longdesc>
+						</local_schema>
+					</entry>
+					<entry name="compat_delete" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Delete Compatibility">
+							<default type="string">
+								<stringvalue>delete-sequence</stringvalue>
+							</default>
+							<longdesc>Defines the behavior of delete key.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="compat_backspace" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Backspace Compatibility">
+							<default type="string">
+								<stringvalue>ascii-delete</stringvalue>
+							</default>
+							<longdesc>Defines the behavior of backscape key.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="max_tab_name_length" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Set max length of the tabs names">
+							<default type="int" value="0"/>
+							<longdesc>Controls the maximum length of the tabs names. Maximum length: 100, Minimum length: 1. 0 = unlimited length.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_vte_titles" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Use terminal titles for tab naming">
+							<default type="bool" value="true"/>
+							<longdesc>Any terminal program can set the terminal&apos;s title via special escape sequences. Some shells (e.g. bash) display user&apos;s prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_palette_font_and_background_color" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Use palette font and backgrount colors">
+							<default type="bool" value="true"/>
+							<longdesc>If true, the terminal font and background colors will use the value
+                defined in the palette. If false, it will use the value defined by the user.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_default_font" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Use default font">
+							<default type="bool" value="true"/>
+							<longdesc>If true, Guake will use the GNOME monospace
+                default font.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="scroll_keystroke" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Scroll on keystroke">
+							<default type="bool" value="true"/>
+							<longdesc>If true and a key is pressed, the terminal is
+                scrolled to the bottom.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="scroll_output" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Scroll on output">
+							<default type="bool" value="false"/>
+							<longdesc>If true, whenever there is new output in the
+                terminal, it will scroll to the bottom.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="history_size" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="History Size.">
+							<default type="int" value="1024"/>
+							<longdesc>The number of scrollback lines to save in
+                history.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_scrollbar" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Sets the scrollbar visibility.">
+							<default type="bool" value="true"/>
+							<longdesc>When true, scrollbar is visible.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_valignment" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Window vertical alignment.">
+							<default type="int" value="0"/>
+							<longdesc>Place Guake at:
+                  0: top, 1: bottom</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_halignment" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Window horizontal alignment.">
+							<default type="int" value="0"/>
+							<longdesc>Place Guake at:
+                  0: center, 1: left, 2: right</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_height_f" mtime="1498812138" type="schema" stype="float" owner="guake">
+						<local_schema locale="C" short_desc="Window height (float).">
+							<default type="float" value="50"/>
+							<longdesc>Percent of the screen that will be used by guake
+                  terminal vertically.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_width_f" mtime="1498812138" type="schema" stype="float" owner="guake">
+						<local_schema locale="C" short_desc="Window width (float).">
+							<default type="float" value="100"/>
+							<longdesc>Percent of the screen that will be used by guake
+                  terminal horizontally.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_width" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Window width.">
+							<default type="int" value="100"/>
+							<longdesc>Percent of the screen that will be used by guake
+                  terminal horizontally.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_visible_bell" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Visible bell">
+							<default type="bool" value="false"/>
+							<longdesc>If true, the terminal will flash
+                on a bell character.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_audible_bell" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Audible bell">
+							<default type="bool" value="false"/>
+							<longdesc>If true, the system alert sound
+                will be played on a bell character.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="start_fullscreen" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Start fullscreen.">
+							<default type="bool" value="false"/>
+							<longdesc>When true, the program will start in fullscreen mode.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="startup_script" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Startup script to execute when guake starts">
+							<default type="string">
+								<stringvalue></stringvalue>
+							</default>
+							<longdesc>This property allows you to execute a startup bash
+                script each time guake starts. You can configure your
+                initial tab settings within this script. Please see
+                the command line argument of guake (&apos;guake --help&apos;)
+                for complete help.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="quick_open_in_current_terminal" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Quick open the file in the current terminal.">
+							<default type="bool" value="false"/>
+							<longdesc>If this property is set as true, guake will
+                use the current terminal to execute the Quick open
+                feature. Use if you want to inherit your terminal
+                environment in your text editor</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="quick_open_command_line" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Command line pattern to start a editor.">
+							<default type="string">
+								<stringvalue>gedit %(file_path)s</stringvalue>
+							</default>
+							<longdesc>This property gives the command line to execute when
+                doing a Quick Open. You can enter the following python
+                string pattern in it: &apos;%(file_path)s&apos; will be replaced
+                with the full path to the captured filename,
+                &apos;%(line_number)s&apos; will be replaced by the line number if
+                found (set to the empty string otherwise).</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="quick_open_enable" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Enable Quick Open feature.">
+							<default type="bool" value="false"/>
+							<longdesc>If this property is set as true, guake will
+                open a text editor when the user does a Ctrl+Click
+                on a filename printed in the terminal.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_tabbar" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="The tab bar visibility.">
+							<default type="bool" value="true"/>
+							<longdesc>When true, the tab bar is visible.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_losefocus" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Determine if guake hides on lose focus.">
+							<default type="bool" value="false"/>
+							<longdesc>If this property is set as true, guake will be
+                hidden when the main window lose the focus (when
+                Alt+Tab be pressed for example).</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="tab_ontop" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Tab on top.">
+							<default type="bool" value="false"/>
+							<longdesc>Makes tab bar on top of the Guake window. Per default,
+                 tabs appears bellow the terminal. Setting this to True will
+                 move the tab on top of the terminal. Requires a restart.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="window_ontop" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Stay on top.">
+							<default type="bool" value="true"/>
+							<longdesc>Makes guake window be on top of all other windows in the
+                    desktop.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="prompt_on_close_tab" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Prompt when closing tabs.">
+							<default type="int" value="0"/>
+							<longdesc>0: Never 1: If process is running 2: Always. 
+                Also prompts on quit.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="prompt_on_quit" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Prompt when quitting.">
+							<default type="bool" value="true"/>
+							<longdesc>Ask for confirmation when quitting Guake.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_popup" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Sets the popup notifications visibility.">
+							<default type="bool" value="true"/>
+							<longdesc>When true, popup notifications will be shown
+                when Guake starts.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_trayicon" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Sets the tray visibility.">
+							<default type="bool" value="true"/>
+							<longdesc>When true tray is visible.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="use_login_shell" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Login shell">
+							<default type="bool" value="false"/>
+							<longdesc>If true, the commands in terminal will be
+                executed in a login shell.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="default_shell" mtime="1498812138" type="schema" stype="string" owner="guake">
+						<local_schema locale="C" short_desc="Path to the default shell.">
+							<default type="string">
+								<stringvalue></stringvalue>
+							</default>
+							<longdesc>Path to the default shell. Set to empty to
+                use default user shell. If invalid path is set
+                here, guake will fallback to user shell.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="display_n" mtime="1498812138" type="schema" stype="int" owner="guake">
+						<local_schema locale="C" short_desc="Display to appear on.">
+							<default type="int" value="0"/>
+							<longdesc>Display to appear on if the  mouse_display option is not set.
+                If this is set to an invalid value (as in the case of removing a
+                screen from a system), the
+                invalid value is automatically updated to the current primary
+                screen.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="mouse_display" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Appear on the mouse display.">
+							<default type="bool" value="true"/>
+							<longdesc>Appear on the mouse display. This overrides any setting
+                in display_n.</longdesc>
+						</local_schema>
+					</entry>
+					<entry name="debug_mode" mtime="1498812138" type="schema" stype="bool" owner="guake">
+						<local_schema locale="C" short_desc="Enable debug mode">
+							<default type="bool" value="false"/>
+							<longdesc>When debug mode is enabled, logs are printed in the
+                standard output where Guake as been launched</longdesc>
+						</local_schema>
+					</entry>
+				</dir>
+			</dir>
+		</dir>
+	</dir>
+	<dir name="apps">
+		<dir name="gksu">
+			<entry name="save-keyring" mtime="1501957250" schema="/schemas/apps/gksu/save-keyring"/>
+			<entry name="save-to-keyring" mtime="1501957250" schema="/schemas/apps/gksu/save-to-keyring"/>
+			<entry name="display-no-pass-info" mtime="1501957250" schema="/schemas/apps/gksu/display-no-pass-info"/>
+			<entry name="prompt" mtime="1501957250" schema="/schemas/apps/gksu/prompt"/>
+			<entry name="sudo-mode" mtime="1501957250" schema="/schemas/apps/gksu/sudo-mode"/>
+			<entry name="force-grab" mtime="1501957250" schema="/schemas/apps/gksu/force-grab"/>
+			<entry name="disable-grab" mtime="1501957250" schema="/schemas/apps/gksu/disable-grab"/>
+		</dir>
+		<dir name="guake">
+			<dir name="keybindings">
+				<dir name="local">
+					<entry name="toggle_hide_on_lose_focus" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/toggle_hide_on_lose_focus"/>
+					<entry name="toggle_fullscreen" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/toggle_fullscreen"/>
+					<entry name="clipboard_paste" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/clipboard_paste"/>
+					<entry name="clipboard_copy" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/clipboard_copy"/>
+					<entry name="toggle_transparency" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/toggle_transparency"/>
+					<entry name="decrease_transparency" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/decrease_transparency"/>
+					<entry name="increase_transparency" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/increase_transparency"/>
+					<entry name="decrease_height" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/decrease_height"/>
+					<entry name="increase_height" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/increase_height"/>
+					<entry name="zoom_out" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/zoom_out"/>
+					<entry name="zoom_in_alt" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/zoom_in_alt"/>
+					<entry name="zoom_in" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/zoom_in"/>
+					<entry name="rename_current_tab" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/rename_current_tab"/>
+					<entry name="switch_tab_last" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab_last"/>
+					<entry name="switch_tab10" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab10"/>
+					<entry name="switch_tab9" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab9"/>
+					<entry name="switch_tab8" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab8"/>
+					<entry name="switch_tab7" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab7"/>
+					<entry name="switch_tab6" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab6"/>
+					<entry name="switch_tab5" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab5"/>
+					<entry name="switch_tab4" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab4"/>
+					<entry name="switch_tab3" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab3"/>
+					<entry name="switch_tab2" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab2"/>
+					<entry name="switch_tab1" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/switch_tab1"/>
+					<entry name="next_tab" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/next_tab"/>
+					<entry name="previous_tab" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/previous_tab"/>
+					<entry name="move_tab_right" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/move_tab_right"/>
+					<entry name="move_tab_left" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/move_tab_left"/>
+					<entry name="search_on_web" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/search_on_web"/>
+					<entry name="close_tab" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/close_tab"/>
+					<entry name="new_tab" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/new_tab"/>
+					<entry name="quit" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/quit"/>
+					<entry name="reset_terminal" mtime="1498812138" schema="/schemas/apps/guake/keybindings/local/reset_terminal"/>
+				</dir>
+				<dir name="global">
+					<entry name="show_hide" mtime="1498812138" schema="/schemas/apps/guake/keybindings/global/show_hide"/>
+				</dir>
+			</dir>
+			<dir name="style">
+				<entry name="cursor_shape" mtime="1498812138" schema="/schemas/apps/guake/style/cursor_shape"/>
+				<entry name="cursor_blink_mode" mtime="1498812138" schema="/schemas/apps/guake/style/cursor_blink_mode"/>
+				<dir name="background">
+					<entry name="transparency" mtime="1498812138" schema="/schemas/apps/guake/style/background/transparency"/>
+					<entry name="image" mtime="1498812138" schema="/schemas/apps/guake/style/background/image"/>
+					<entry name="color" mtime="1498812138" schema="/schemas/apps/guake/style/background/color"/>
+				</dir>
+				<dir name="font">
+					<entry name="allow_bold" mtime="1498812138" schema="/schemas/apps/guake/style/font/allow_bold"/>
+					<entry name="palette_name" mtime="1498812138" schema="/schemas/apps/guake/style/font/palette_name"/>
+					<entry name="palette" mtime="1498812138" schema="/schemas/apps/guake/style/font/palette"/>
+					<entry name="color" mtime="1498812138" schema="/schemas/apps/guake/style/font/color"/>
+					<entry name="style" mtime="1498812138" schema="/schemas/apps/guake/style/font/style"/>
+				</dir>
+			</dir>
+			<dir name="general">
+				<entry name="custom_command_file" mtime="1498812138" schema="/schemas/apps/guake/general/custom_command_file"/>
+				<entry name="focus_if_open" mtime="1498812138" schema="/schemas/apps/guake/general/focus_if_open"/>
+				<entry name="toolbar_visible_in_fullscreen" mtime="1498812138" schema="/schemas/apps/guake/general/toolbar_visible_in_fullscreen"/>
+				<entry name="show_resizer" mtime="1498812138" schema="/schemas/apps/guake/general/show_resizer"/>
+				<entry name="word_chars" mtime="1498812138" schema="/schemas/apps/guake/general/word_chars"/>
+				<entry name="compat_delete" mtime="1498812138" schema="/schemas/apps/guake/general/compat_delete"/>
+				<entry name="compat_backspace" mtime="1498812138" schema="/schemas/apps/guake/general/compat_backspace"/>
+				<entry name="max_tab_name_length" mtime="1498812138" schema="/schemas/apps/guake/general/max_tab_name_length"/>
+				<entry name="use_vte_titles" mtime="1498812138" schema="/schemas/apps/guake/general/use_vte_titles"/>
+				<entry name="use_palette_font_and_background_color" mtime="1498812138" schema="/schemas/apps/guake/general/use_palette_font_and_background_color"/>
+				<entry name="use_default_font" mtime="1498812138" schema="/schemas/apps/guake/general/use_default_font"/>
+				<entry name="scroll_keystroke" mtime="1498812138" schema="/schemas/apps/guake/general/scroll_keystroke"/>
+				<entry name="scroll_output" mtime="1498812138" schema="/schemas/apps/guake/general/scroll_output"/>
+				<entry name="history_size" mtime="1498812138" schema="/schemas/apps/guake/general/history_size"/>
+				<entry name="use_scrollbar" mtime="1498812138" schema="/schemas/apps/guake/general/use_scrollbar"/>
+				<entry name="window_valignment" mtime="1498812138" schema="/schemas/apps/guake/general/window_valignment"/>
+				<entry name="window_halignment" mtime="1498812138" schema="/schemas/apps/guake/general/window_halignment"/>
+				<entry name="window_height_f" mtime="1498812138" schema="/schemas/apps/guake/general/window_height_f"/>
+				<entry name="window_width_f" mtime="1498812138" schema="/schemas/apps/guake/general/window_width_f"/>
+				<entry name="window_width" mtime="1498812138" schema="/schemas/apps/guake/general/window_width"/>
+				<entry name="use_visible_bell" mtime="1498812138" schema="/schemas/apps/guake/general/use_visible_bell"/>
+				<entry name="use_audible_bell" mtime="1498812138" schema="/schemas/apps/guake/general/use_audible_bell"/>
+				<entry name="start_fullscreen" mtime="1498812138" schema="/schemas/apps/guake/general/start_fullscreen"/>
+				<entry name="startup_script" mtime="1498812138" schema="/schemas/apps/guake/general/startup_script"/>
+				<entry name="quick_open_in_current_terminal" mtime="1498812138" schema="/schemas/apps/guake/general/quick_open_in_current_terminal"/>
+				<entry name="quick_open_command_line" mtime="1498812138" schema="/schemas/apps/guake/general/quick_open_command_line"/>
+				<entry name="quick_open_enable" mtime="1498812138" schema="/schemas/apps/guake/general/quick_open_enable"/>
+				<entry name="window_tabbar" mtime="1498812138" schema="/schemas/apps/guake/general/window_tabbar"/>
+				<entry name="window_losefocus" mtime="1498812138" schema="/schemas/apps/guake/general/window_losefocus"/>
+				<entry name="tab_ontop" mtime="1498812138" schema="/schemas/apps/guake/general/tab_ontop"/>
+				<entry name="window_ontop" mtime="1498812138" schema="/schemas/apps/guake/general/window_ontop"/>
+				<entry name="prompt_on_close_Tab" mtime="1498812138" schema="/schemas/apps/guake/general/prompt_on_close_tab"/>
+				<entry name="prompt_on_quit" mtime="1498812138" schema="/schemas/apps/guake/general/prompt_on_quit"/>
+				<entry name="use_popup" mtime="1498812138" schema="/schemas/apps/guake/general/use_popup"/>
+				<entry name="use_trayicon" mtime="1498812138" schema="/schemas/apps/guake/general/use_trayicon"/>
+				<entry name="use_login_shell" mtime="1498812138" schema="/schemas/apps/guake/general/use_login_shell"/>
+				<entry name="default_shell" mtime="1498812138" schema="/schemas/apps/guake/general/default_shell"/>
+				<entry name="display_n" mtime="1498812138" schema="/schemas/apps/guake/general/display_n"/>
+				<entry name="mouse_display" mtime="1498812138" schema="/schemas/apps/guake/general/mouse_display"/>
+				<entry name="debug_mode" mtime="1498812138" schema="/schemas/apps/guake/general/debug_mode"/>
+			</dir>
+		</dir>
+	</dir>
+</gconf>
