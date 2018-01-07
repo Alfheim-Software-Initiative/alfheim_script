@@ -205,9 +205,12 @@ system('cp work/iso/EFI/shellx64_v1.efi work/efiboot/EFI/');
 system('umount -d work/efiboot');
 
 ## Final steps
-mkdir 'work/alfheim';
-system('cp -a -l -f work/airootfs work');
-system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "iso" -D "alfheim" pkglist');
-system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "iso" -D "alfheim" ${gpg_key:+-g ${gpg_key}} prepare');
+#mkdir 'work/alfheim';
+#system('cp -a -l -f work/airootfs work');
 
-system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -o "work/out" iso "alfheim-beta-x86_64-0.2.0.iso"');
+system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" pkglist');
+system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" ${gpg_key:+-g ${gpg_key}} prepare');
+
+system('mv work/airootfs /home/moggles/alfheim_script/');
+
+system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -o "work/out" iso "alfheim-beta-x86_64-0.2.2.iso"');

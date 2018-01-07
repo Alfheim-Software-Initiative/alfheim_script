@@ -51,6 +51,7 @@ use warnings;
 my $script_path = \$ENV{PWD};
 
 system('cpan install File::Slurp');
+print "\n\n";
 
 sub menu {
 	my @items = @_;
@@ -60,7 +61,7 @@ sub menu {
 		printf "%d: %s\n", ++$count, $item->{text};
 	}
 
-	print "\nChoose an option?: ";
+	print "\nChoose an option? : ";
 
 	while( my $line = <STDIN> ) {
 		chomp $line;
@@ -78,7 +79,7 @@ my @other_menu_choices;
 @menu_choices = (
 	{ text  => 'Create a non-systemd disc (preferred)',
 		code  => sub { exec ('scripts/alnsd/alnsd') } },
-	{ text  => 'Create a systemd disc (discouraged)',
+	{ text  => 'Create a systemd disc (discouraged, non-working)',
 		code  => sub { exec ('scripts/alsd/alsd') } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
