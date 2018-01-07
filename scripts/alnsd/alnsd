@@ -126,7 +126,15 @@ system('cp -rf work/airootfs/boot/memtest86+/memtest.bin work/iso/alfheim/boot/m
 system('cp -rf work/airootfs/usr/share/licenses/common/GPL2/license.txt work/iso/alfheim/boot/memtest.COPYING');
 system('cp -rf work/airootfs/boot/intel-ucode.img work/iso/alfheim/boot/intel_ucode.img');
 system('cp -rf work/airootfs/usr/share/licenses/intel-ucode/LICENSE work/iso/alfheim/boot/intel_ucode.LICENSE');
+
+system('cp -rf scripts/alnsd/syslinux/archiso.cfg work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/archiso_head.cfg work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/archiso_pxe.cfg work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/archiso_sys.cfg work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/archiso_tail.cfg work/iso/alfheim/boot/syslinux/');
+system('cp -rf scripts/alnsd/syslinux/syslinux.cfg work/iso/alfheim/boot/syslinux/');
 system('cp -rf scripts/alnsd/syslinux/splash.png work/iso/alfheim/boot/syslinux/');
+
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/*.c32 work/iso/alfheim/boot/syslinux');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/lpxelinux.0 work/iso/alfheim/boot/syslinux');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/memdisk work/iso/alfheim/boot/syslinux');
@@ -199,7 +207,7 @@ system('umount -d work/efiboot');
 ## Final steps
 mkdir 'work/alfheim';
 system('cp -a -l -f work/airootfs work');
-system('setarch x86_64 mkarchiso -w "work" -D "alfheim" pkglist');
-system('setarch x86_64 mkarchiso -w "work" -D "alfheim" ${gpg_key:+-g ${gpg_key}} prepare');
+system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "iso" -D "alfheim" pkglist');
+system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "iso" -D "alfheim" ${gpg_key:+-g ${gpg_key}} prepare');
 
-system('mkarchiso -C "pacman.conf" -w "work" -D "alfheim" -L "alfheim" -o "work/out" iso "alfheim-beta-x86_64-0.2.0.iso"');
+system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -o "work/out" iso "alfheim-beta-x86_64-0.2.0.iso"');
