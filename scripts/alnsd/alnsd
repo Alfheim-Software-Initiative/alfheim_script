@@ -135,14 +135,73 @@ system('cp -rf scripts/alnsd/syslinux/archiso_tail.cfg work/iso/alfheim/boot/sys
 system('cp -rf scripts/alnsd/syslinux/syslinux.cfg work/iso/alfheim/boot/syslinux/');
 system('cp -rf scripts/alnsd/syslinux/splash.png work/iso/alfheim/boot/syslinux/');
 
-system('cp -rf work/airootfs/usr/lib/syslinux/bios/*.c32 work/iso/alfheim/boot/syslinux');
+system("cp -rf /usr/lib/syslinux/bios/cat.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/config.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cpuidtest.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/dmi.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/gfxboot.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/host.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ifplop.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/lfs.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/libmenu.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/lua.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/pci.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/prdhcp.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/rosh.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/syslinux.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/vpdtest.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/chain.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cptime.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/debug.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/dmitest.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/gpxecmd.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ifcpu64.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/kbdmap.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/libcom32.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/libutil.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/mboot.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/pcitest.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/pwd.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/sanboot.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/vesa.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/whichsys.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cmd.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cpu.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/dhcp.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/elf.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/hdt.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ifcpu.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/kontron_wdt.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/libgpl.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/linux.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/meminfo.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/pmload.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/pxechn.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/sdi.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/vesainfo.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/zzjson.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cmenu.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/cpuid.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/disk.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ethersel.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/hexdump.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ifmemdsk.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ldlinux.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/liblua.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/ls.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/menu.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/poweroff.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/reboot.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/sysdump.c32 work/iso/alfheim/boot/syslinux/");
+system("cp -rf /usr/lib/syslinux/bios/vesamenu.c32 work/iso/alfheim/boot/syslinux/");
+
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/lpxelinux.0 work/iso/alfheim/boot/syslinux');
 system('cp -rf work/airootfs/usr/lib/syslinux/bios/memdisk work/iso/alfheim/boot/syslinux');
 
 mkpath 'work/iso/alfheim/boot/syslinux/hdt';
 
 system('gzip -c -9 work/airootfs/usr/share/hwdata/pci.ids > work/iso/alfheim/boot/syslinux/hdt/pciids.gz');
-system('gzip -c -9 work/airootfs/usr/lib/modules/*-ARCH/modules.alias > work/iso/alfheim/boot/syslinux/hdt/modalias.gz');
+system('gzip -c -9 work/airootfs/usr/lib/modules/*-ARTIX/modules.alias > work/iso/alfheim/boot/syslinux/hdt/modalias.gz');
 
 ## Here we create isolinux and move alfheim into the iso directory
 mkpath 'work/iso/isolinux';
@@ -213,4 +272,4 @@ system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "al
 
 system('mv work/airootfs /home/moggles/alfheim_script/');
 
-system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -o "work/out" iso "alfheim-beta-x86_64-0.2.2.iso"');
+system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk" -o "work/out" iso "alfheim-beta-x86_64-0.3.10.iso"');
