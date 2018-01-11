@@ -33,4 +33,4 @@ chown -R archlive /home/archlive
 echo " " >> /etc/sudoers
 echo "archlive ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-su archlive -c "yaourt -Sy base-devel auto-auto-complete texman netcfg-git google-chrome-dev yaourt-gui kodi-platform atom-editor-bin gitg-git zpaq obmenu-generator obmenu"
+su archlive -c "yaourt -Sy --noconfirm auto-auto-complete texman netcfg-git google-chrome-dev yaourt-gui atom-editor-bin zpaq obmenu-generator obmenu"
