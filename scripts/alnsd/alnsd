@@ -117,6 +117,27 @@ system('umount -l work/airootfs');
 ## Create the necessary boot files
 ## Make an iso from the iso directory
 
+## Using build.sh to build the iso
+my $alicense = &promptUser("The following code is modified from archiso and as such is licensed as GPL.  If you wish to continue press (y) ");
+system('/bin/bash scripts/alnsd/build.sh')
+
+my sub promptUser{
+	local($promptString,$defaultValue) = 'y';
+
+	if($defaultValue) {
+		system('/bin/bash scripts/alnsd/build.sh');
+	} else {
+		print "Thank you for using Alfheim build script.  No files have been removed and may be found in the work dir so you can build the iso yourself";
+	}
+
+	$| = 1;
+	$_ = <STDIN>;
+
+	chomp;
+}
+## The following code doesn't produce a working iso
+## pulling this out into build.sh and running it from there
+=begin comment
 mkdir 'work/iso';
 system('cp -rf work/airootfs/ work/iso/alfheim');
 mkdir "work/iso/alfheim/boot/x86_64";
@@ -273,3 +294,5 @@ system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "al
 system('mv work/airootfs /home/moggles/alfheim_script/');
 
 system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk" -o "work/out" iso "alfheim-beta-x86_64-0.3.10.iso"');
+=end comment
+=cut
