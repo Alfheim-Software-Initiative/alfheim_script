@@ -1,21 +1,42 @@
 #!/usr/bin/bash
 
+## Please note this code is taken directly from archiso and edited for
+## Alfheim Linux, as such this code is licensed under the GNU GPL
+
 set -e -u
 
-iso_name=archlinux
+## Begin Editable Section
+iso_name=alfheim
 iso_label="alfheim"
-iso_version="0.3.15"
+iso_version="BETA_0.3.21"
 install_dir=alfheim
 work_dir=work
 out_dir=out
 gpg_key=
+iso_publisher="Alfheim Linux <alfheimlinux@gmail.com>"
+iso_application="Alfheim Linux Live/Rescue Disk"
+## End Editable Section
 
 arch=$(uname -m)
 verbose=""
 
 script_path=$(readlink -f ${0%/*})
 
-# Prepare kernel/initramfs ${install_dir}/boot/
+# Copy scripts/alnsd/etc to root
+cp -rf ${script_path}/skel/etc/* ${work_dir}/airootfs/etc/.
+
+groupadd sudo
+groupmod -g 900 sudo
+echo "root:toorpassword" | chpasswd
+useradd -d /home/archlive -g wheel archlive
+echo "archlive:archlive" | chpasswd
+usermod -aG sudo archlive
+
+echo " " >> /etc/sudoers
+echo "archlive ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Prepare kernel/initramfs ${install_dir}
+/boot/
 mkdir -p ${work_dir}/iso/${install_dir}/boot/${arch}
 cp ${work_dir}/airootfs/boot/alfheim.img ${work_dir}/iso/${install_dir}/boot/${arch}/alfheim.img
 cp ${work_dir}/airootfs/boot/vmlinuz-linux ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz
@@ -96,6 +117,8 @@ cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/e
 sed "s|%ARCHISO_LABEL%|${iso_label}|g;
      s|%INSTALL_DIR%|${install_dir}|g" \
     ${script_path}/efiboot/loader/entries/archiso-x86_64-cd.conf > ${work_dir}/efiboot/loader/entries/archiso-x86_64.conf
+#cp -rf ${script_path}/skel/root/.* ${work_dir}/airootfs/root/.
+#cp -rf ${script_path}/skel/root/.* ${work_dir}/airootfs/archlive/.
 
 cp ${work_dir}/iso/EFI/shellx64_v2.efi ${work_dir}/efiboot/EFI/
 cp ${work_dir}/iso/EFI/shellx64_v1.efi ${work_dir}/efiboot/EFI/
@@ -104,10 +127,10 @@ umount -d ${work_dir}/efiboot
 
 # Build airootfs filesystem image
 cp -a -l -f ${work_dir}/airootfs ${work_dir}
-setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk"  -D "${install_dir}" pkglist
-setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk"  -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
+setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P ${iso_publisher} -A ${iso_application}  -D "${install_dir}" pkglist
+setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P ${iso_publisher} -A ${iso_application}  -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
 rm -rf ${work_dir}/airootfs
 # rm -rf ${work_dir}/${arch}/airootfs (if low space, this helps)
 
 # Build ISO
-mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk"  -o "${out_dir}" iso "${iso_name}-${iso_version}-x86_64.iso"
+mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -P ${iso_publisher} -A ${iso_application}  -o "${out_dir}" iso "${iso_name}-${iso_version}-x86_64.iso"
