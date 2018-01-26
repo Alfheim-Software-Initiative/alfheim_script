@@ -5,49 +5,6 @@ if ( $< != 0 ) {
 	exit (0);
 }
 
-print "This script builds the Alfheim Linux non-systemd Live disc!\n\n";
-print "It is part of the Alfheim Software Initiative.\nIt is released under the HLIN Public License v.2.0.\n";
-print "########################################################################\n";
-print "#                        HLIN Public License v.2.0                     #\n";
-print "#                                                                      #\n";
-print "# Terms and Conditions for Copying, Modifying, and Distributing        #\n";
-print "# Software, Documentations, and other works.                           #\n";
-print "#                                                                      #\n";
-print "# Do whatever you want in regards to this software (either in source   #\n";
-print "# or binary form), any and all documents, and all works released under #\n";
-print "# this license.                                                        #\n";
-print "#                                                                      #\n";
-print "# In jurisdictions that recognize copyright laws, the author or        #\n";
-print "# authors of this software, documentation, and/or works dedicate any   #\n";
-print "# and all copyright interest in the software, documentation, or        #\n";
-print "# further works to the public domain. We make this dedication for the  #\n";
-print "# benefit of the public at large and to the detriment of our heirs and #\n";
-print "# successors. We intend this dedication to be an overt act of          #\n";
-print "# relinquishment in perpetuity of all present and future rights to     #\n";
-print "# these works under copyright law.                                     #\n";
-print "#                                                                      #\n";
-print "# These terms and conditions are not permission to use the names of    #\n";
-print "# any project, developer, or person that releases their software,      #\n";
-print "# documentation or works under this license in marketing,              #\n";
-print "# advertisement, or publicity of your project, group or self.  Neither #\n";
-print "# does it permit you to make claims that you are associated with or    #\n";
-print "# part of said projects, developers, or person at any time.  Please    #\n";
-print "# respect these projects, developers, and people as they respect you   #\n";
-print "# by providing you with these works.                                   #\n";
-print "#                                                                      #\n";
-print "# THESE SOFTWARE, DOCUMENTATION, AND/OR WORKS ARE PROVIDED \"AS IS\",    #\n";
-print "# WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT  #\n";
-print "# LIMITED TO THEIR WARRANTIES OF MERCHANTABILITY, FITNESS FOR A        #\n";
-print "# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE        #\n";
-print "# AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER #\n";
-print "# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR #\n";
-print "# IN CONNECTION WITH THE SOFTWARE, DOCUMENTATION, AND/OR WORKS OR THE  #\n";
-print "# USE OR OTHER DEALINGS IN THE SOFTWARE, DOCUMENTATION, AND/OR WORKS.  #\n";
-print "########################################################################\n";
-
-$cls = `clear`;
-print $cls;
-
 print "\nWelcome to Alfheim Linux non-systemd Build Toolkit!\n";
 print "Here we are going to work together to build the best system\n";
 print "that we can to suit your needs.  A lot of the software that\n";
@@ -56,40 +13,12 @@ print "the gate but we will do our best to accomodate you.\n";
 
 print "\nThank you for choosing to be a part of the Alfheim family!\n\n\n";
 
-=begin comment
-use Cwd;
-use POSIX;
-use File::Path;
-use File::Slurp;
-use strict;
-use warnings;
-
-my $script_path = cwd();
-
-my $arch = (POSIX::uname)[4];
-
-print "Enter a name for your iso: \n";
-my $iso_name = <STDIN>;
-chomp $iso_name;
-print "Enter your iso label (ie... ALNSD_BETA): \n";
-my $iso_label = <STDIN>;
-chomp $iso_label;
-print "Enter your iso version (ie... 1.0.0): \n";
-my $iso_version = <STDIN>;
-chomp $iso_version;
-my $iso_title = "$iso_name-$iso_label\_$arch-$iso_version.iso";
-print "Your iso will be named $iso_title\n";
-=end comment
-=cut
-
 use strict;
 use warnings;
 use File::Slurp;
 use File::Path;
 
 my $script_root = \$ENV{PWD};
-
-mkpath "work/out";
 
 system('/usr/bin/chmod a+x scripts/alnsd/pre-config.sh');
 system('/usr/bin/chmod a+x scripts/alnsd/packages');
@@ -109,6 +38,7 @@ system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
 system('umount -l work/airootfs');
 system('cp -rf scripts/alnsd/skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/archlive/');
+system('cp -rf scripts/alnsd/skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/root/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
 system('umount -l work/airootfs');
 
@@ -120,166 +50,3 @@ system('umount -l work/airootfs');
 ## Using build.sh to build the iso
 system('/usr/bin/chmod a+x scripts/alnsd/build.sh');
 system('/usr/bin/bash scripts/alnsd/build.sh');
-
-## The following code doesn't produce a working iso
-## pulling this out into build.sh and running it from there
-
-=begin comment
-mkdir 'work/iso';
-system('cp -rf work/airootfs/ work/iso/alfheim');
-mkdir "work/iso/alfheim/boot/x86_64";
-system('cp -rf work/airootfs/boot/alfheim.img work/iso/alfheim/boot/x86_64/');
-system('cp -rf work/airootfs/boot/vmlinuz-linux work/iso/alfheim/boot/x86_64/vmlinuz');
-system('cp -rf work/airootfs/boot/memtest86+/memtest.bin work/iso/alfheim/boot/memtest');
-system('cp -rf work/airootfs/usr/share/licenses/common/GPL2/license.txt work/iso/alfheim/boot/memtest.COPYING');
-system('cp -rf work/airootfs/boot/intel-ucode.img work/iso/alfheim/boot/intel_ucode.img');
-system('cp -rf work/airootfs/usr/share/licenses/intel-ucode/LICENSE work/iso/alfheim/boot/intel_ucode.LICENSE');
-
-system('cp -rf scripts/alnsd/syslinux/archiso.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/archiso_head.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/archiso_pxe.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/archiso_sys.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/archiso_tail.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/syslinux.cfg work/iso/alfheim/boot/syslinux/');
-system('cp -rf scripts/alnsd/syslinux/splash.png work/iso/alfheim/boot/syslinux/');
-
-system("cp -rf /usr/lib/syslinux/bios/cat.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/config.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cpuidtest.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/dmi.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/gfxboot.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/host.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ifplop.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/lfs.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/libmenu.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/lua.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/pci.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/prdhcp.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/rosh.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/syslinux.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/vpdtest.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/chain.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cptime.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/debug.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/dmitest.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/gpxecmd.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ifcpu64.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/kbdmap.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/libcom32.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/libutil.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/mboot.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/pcitest.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/pwd.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/sanboot.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/vesa.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/whichsys.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cmd.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cpu.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/dhcp.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/elf.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/hdt.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ifcpu.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/kontron_wdt.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/libgpl.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/linux.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/meminfo.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/pmload.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/pxechn.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/sdi.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/vesainfo.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/zzjson.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cmenu.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/cpuid.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/disk.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ethersel.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/hexdump.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ifmemdsk.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ldlinux.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/liblua.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/ls.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/menu.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/poweroff.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/reboot.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/sysdump.c32 work/iso/alfheim/boot/syslinux/");
-system("cp -rf /usr/lib/syslinux/bios/vesamenu.c32 work/iso/alfheim/boot/syslinux/");
-
-system('cp -rf work/airootfs/usr/lib/syslinux/bios/lpxelinux.0 work/iso/alfheim/boot/syslinux');
-system('cp -rf work/airootfs/usr/lib/syslinux/bios/memdisk work/iso/alfheim/boot/syslinux');
-
-mkpath 'work/iso/alfheim/boot/syslinux/hdt';
-
-system('gzip -c -9 work/airootfs/usr/share/hwdata/pci.ids > work/iso/alfheim/boot/syslinux/hdt/pciids.gz');
-system('gzip -c -9 work/airootfs/usr/lib/modules/*-ARTIX/modules.alias > work/iso/alfheim/boot/syslinux/hdt/modalias.gz');
-
-## Here we create isolinux and move alfheim into the iso directory
-mkpath 'work/iso/isolinux';
-
-system('cp -rf scripts/alnsd/isolinux.cfg work/iso/isolinux/');
-system('cp work/airootfs/usr/lib/syslinux/bios/isolinux.bin work/iso/isolinux/');
-system('cp work/airootfs/usr/lib/syslinux/bios/isohdpfx.bin work/iso/isolinux/');
-system('cp work/airootfs/usr/lib/syslinux/bios/ldlinux.c32 work/iso/isolinux/');
-
-## Let's attempt to enable EFI here (in the past this has failed)
-mkpath 'work/iso/EFI/boot';
-
-system('cp -rf work/airootfs/usr/share/efitools/efi/PreLoader.efi work/iso/EFI/boot/bootx64.efi');
-system('cp -rf work/airootfs/usr/share/efitools/efi/HashTool.efi work/iso/EFI/boot/');
-
-system('cp -rf work/airootfs/usr/share/efitools/efi/Loader.efi work/iso/EFI/boot/loader.efi');
-
-mkpath 'work/iso/loader/entries';
-
-system('cp -rf scripts/alnsd/efiboot/loader/loader.conf work/iso/loader/');
-system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/iso/loader/entries/');
-system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/iso/loader/entries/');
-
-system('cp -rf scripts/alnsd/efiboot/loader/entries/archiso-x86_64-usb.conf work/iso/loader/entries/archiso-x86_64.conf');
-
-# EFI Shell 2.0 for UEFI 2.3+
-system('curl -o work/iso/EFI/shellx64_v2.efi https://raw.githubusercontent.com/tianocore/edk2/master/ShellBinPkg/UefiShell/X64/Shell.efi');
-# EFI Shell 1.0 for non UEFI 2.3+
-system('curl -o work/iso/EFI/shellx64_v1.efi https://raw.githubusercontent.com/tianocore/edk2/master/EdkShellBinPkg/FullShell/X64/Shell_Full.efi');
-
-mkpath 'work/iso/EFI/archiso';
-system('truncate -s 64M work/iso/EFI/archiso/efiboot.img');
-system('mkfs.fat -n ALFHEIM_EFI work/iso/EFI/archiso/efiboot.img');
-
-mkdir 'work/efiboot';
-system('mount work/iso/EFI/archiso/efiboot.img work/efiboot');
-
-mkpath 'work/efiboot/EFI/archiso';
-system('cp -rf work/iso/alfheim/boot/x86_64/vmlinuz work/efiboot/EFI/archiso/vmlinuz.efi');
-system('cp -rf work/iso/alfheim/boot/x86_64/alfheim.img work/efiboot/EFI/archiso/alfheim.img');
-
-system('cp -rf work/iso/alfheim/boot/intel_ucode.img work/efiboot/EFI/archiso/intel_ucode.img');
-
-mkpath 'work/efiboot/EFI/boot';
-system('cp -rf work/airootfs/usr/share/efitools/efi/PreLoader.efi work/efiboot/EFI/boot/bootx64.efi');
-system('cp -rf work/airootfs/usr/share/efitools/efi/HashTool.efi work/efiboot/EFI/boot/');
-
-system('cp -rf work/airootfs/usr/share/efitools/efi/Loader.efi work/efiboot/EFI/boot/loader.efi');
-
-mkpath 'work/efiboot/loader/entries';
-system('cp -rf scripts/alnsd/efiboot/loader/loader.conf work/efiboot/loader/');
-system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v2-x86_64.conf work/efiboot/loader/entries/');
-system('cp -rf scripts/alnsd/efiboot/loader/entries/uefi-shell-v1-x86_64.conf work/efiboot/loader/entries/');
-
-system('cp -rf scripts/alnsd/efiboot/loader/entries/archiso-x86_64-cd.conf work/efiboot/loader/entries/archiso-x86_64.conf');
-
-system('cp -rf work/iso/EFI/shellx64_v2.efi work/efiboot/EFI/');
-system('cp work/iso/EFI/shellx64_v1.efi work/efiboot/EFI/');
-
-system('umount -d work/efiboot');
-
-## Final steps
-#mkdir 'work/alfheim';
-#system('cp -a -l -f work/airootfs work');
-
-system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" pkglist');
-system('setarch x86_64 mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" ${gpg_key:+-g ${gpg_key}} prepare');
-
-system('mv work/airootfs /home/moggles/alfheim_script/');
-
-system('mkarchiso -C "scripts/alnsd/pacman.conf" -w "work" -D "alfheim" -L "alfheim" -P "Alfheim Linux <alfheimlinux@gmail.com>" -A "Alfheim Linux Live Disk" -o "work/out" iso "alfheim-beta-x86_64-0.3.10.iso"');
-=end comment
-=cut
