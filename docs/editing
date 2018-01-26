@@ -1,0 +1,110 @@
+################################################################
+## Note this document is covered under the HLIN v.2.0 License ##
+################################################################
+
+How to edit the Alfheim Build Script to make your own Arch based
+distribution.
+
+Alfheim Software Initiative Developers
+2017 - Current
+
+These are only suggestions you are free to edit and rebuild it as
+you please.
+
+The alfheim script in the root folder is a jumping off board for the
+rest of the script and provides the license that Alfheim Linux is
+released under and a simple menu so people can choose to install a
+non-systemd or systemd version of the ISO. Shouldn't need editing
+except to change the name of the Distribution and the Licensing, or
+to add other menu options.
+
+- scripts/alnsd -
+This is where the non-systemd iso system is hosted and there are a lot
+of files that can be changed in here.
+
+- scripts/alnsd/alnsd -
+This is the main script for the non-systemd build and routes to all
+other scripts.  The only thing we suggest that is changed in here is
+the Distribution name.  If you have anything that needs to be copied
+over to the new filesystem you can include it here too, all files
+should be in the skel directory.
+
+- scripts/alnsd/build.sh -
+The only part of this script that should need editing is the part of
+the script that starts with ## Begin Editable Section and ends with
+## End Editable Section.
+
+- scripts/alnsd/customize_airootfs.sh -
+Here we recommend changing the last line to edit the package lists.
+If you remove netcfg you will not be able to connect to a network
+connection other than that everything else can be removed and items
+can be added, this is here to install things from the AUR instead of
+pacman and so have kept it separate from the main package list.
+
+-scripts/alnsd/isolinux.conf -
+Change alfheim to whatever name you set install_dir to in build.sh.
+The rest should stay the same.
+
+- scripts/alnsd/mkinitcpio.conf -
+No changes should be made to this file.
+
+-scripts/alnsd/packages -
+The only packages you should install are openrc-system, openrc-world,
+and base-devel.  Everything else is on the table and can be changed to
+your liking.  Note :: some packages may have a systemd dependancy and
+alnsd will not install systemd.
+
+- scripts/alnsd/pacman_final.conf and scripts/alnsd/pacman.conf -
+Do not edit these files, except to comment out the testing if you don't
+want to use the testing branches.
+
+- scripts/alnsd/pre-config.sh -
+The only thing here that needs to be edited is the last line.  The *.img
+file should match your distribution name.  When you change this line there
+are multiple files you have to change to match it ::
+-> scripts/alnsd/build.sh - lines 41 and 102
+-> scripts/alnsd/syslinux/archiso_sys.cfg - line 10
+-> scripts/alnsd/efiboot/entries/archiso-x86_64-cd.conf - line 4
+-> scripts/alnsd/efiboot/entries/archiso-x86_64-cd.conf - line 4
+
+- scripts/alnsd/efiboot/loader.conf -
+Change the Distribution name.
+
+- scripts/alnsd/efiboot/entries/archiso-x86_64-cd.conf -
+Change all references to alfheim (except line 4 as noted above) to your
+distribution name.
+
+- scripts/alnsd/efiboot/entries/archiso-x86_64-cd.conf -
+Change all references to alfheim (except line 4 as noted above) to your
+distribution name.
+
+- scripts/alnsd/pacman.d -
+No files in this directory should need to be edited.
+
+- scripts/alnsd/skel -
+As mentioned before any files that you want to copy over to your final
+iso should be included in here and you should edit scripts/alnsd to
+copy those files over.
+
+- scripts/alnsd/syslinux/archiso_head.cfg -
+Change Alfheim Linux to your distribution name.
+
+- scripts/alnsd/syslinux/archiso_pxe.cfg -
+Change all instances of Alfheim Linux to your distribution name.
+
+- scripts/alnsd/syslinux/archiso_sys.cfg -
+Change all instances of Alfheim Linux to your distribution name,
+and don't forget to match line 4 to your pre-config.sh.
+
+- scripts/alnsd/syslinux/archiso_tail.cfg -
+No changes needed.
+
+- scripts/alnsd/syslinux/archiso.cfg -
+No changes needed.
+
+- scripts/alnsd/syslinux/syslinux.cfg -
+No changes needed.
+
+- scripts/alnsd/syslinux/splash.png -
+Google how to create a grub splash and replace the Afheim Linux
+splash.png with your own.
