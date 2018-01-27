@@ -16,7 +16,6 @@ gpg_key=
 iso_publisher="Alfheim Linux <alfheimlinux@gmail.com>"
 iso_application="Alfheim Linux Live/Rescue Disk"
 ## End Editable Section
-
 arch=$(uname -m)
 verbose=""
 
@@ -25,18 +24,7 @@ script_path=$(readlink -f ${0%/*})
 # Copy scripts/alnsd/etc to root
 cp -rf ${script_path}/skel/etc/* ${work_dir}/airootfs/etc/.
 
-groupadd sudo
-groupmod -g 900 sudo
-echo "root:toorpassword" | chpasswd
-useradd -d /home/archlive -g wheel archlive
-echo "archlive:archlive" | chpasswd
-usermod -aG sudo archlive
-
-echo " " >> /etc/sudoers
-echo "archlive ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
 # Prepare kernel/initramfs ${install_dir}
-/boot/
 mkdir -p ${work_dir}/iso/${install_dir}/boot/${arch}
 cp ${work_dir}/airootfs/boot/alfheim.img ${work_dir}/iso/${install_dir}/boot/${arch}/alfheim.img
 cp ${work_dir}/airootfs/boot/vmlinuz-linux ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz
