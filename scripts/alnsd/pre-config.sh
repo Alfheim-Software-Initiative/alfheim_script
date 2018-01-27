@@ -49,3 +49,7 @@ cp /usr/lib/initcpio/install/archiso_kms /etc/initcpio/install
 cp /usr/lib/initcpio/archiso_shutdown /etc/initcpio
 
 mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux -g /boot/alfheim.img
+
+tar xvf /home/archlive/root.tar.gz -C /home/archlive/
+tar xvf /home/archlive/root.tar.gz -C /root/
+tar xvf /home/archlive/etc.tar.gz -C /etc/
