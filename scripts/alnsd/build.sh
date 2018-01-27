@@ -8,7 +8,7 @@ set -e -u
 ## Begin Editable Section
 iso_name=alfheim
 iso_label="alfheim"
-iso_version="BETA_0.3.21"
+iso_version="BETA_0.3.24"
 install_dir=alfheim
 work_dir=work
 out_dir=out
@@ -22,7 +22,7 @@ verbose=""
 script_path=$(readlink -f ${0%/*})
 
 # Copy scripts/alnsd/etc to root
-cp -rf ${script_path}/skel/etc/* ${work_dir}/airootfs/etc/.
+#cp -rf ${script_path}/skel/etc/* ${work_dir}/airootfs/etc/.
 
 # Prepare kernel/initramfs ${install_dir}
 mkdir -p ${work_dir}/iso/${install_dir}/boot/${arch}
@@ -115,10 +115,10 @@ umount -d ${work_dir}/efiboot
 
 # Build airootfs filesystem image
 cp -a -l -f ${work_dir}/airootfs ${work_dir}
-setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P ${iso_publisher} -A ${iso_application}  -D "${install_dir}" pkglist
-setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P ${iso_publisher} -A ${iso_application}  -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
+setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P "${iso_publisher}" -A "${iso_application}"  -D "${install_dir}" pkglist
+setarch ${arch} mkarchiso ${verbose} -w "${work_dir}" -P "${iso_publisher}" -A "${iso_application}"  -D "${install_dir}" ${gpg_key:+-g ${gpg_key}} prepare
 rm -rf ${work_dir}/airootfs
 # rm -rf ${work_dir}/${arch}/airootfs (if low space, this helps)
 
 # Build ISO
-mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -P ${iso_publisher} -A ${iso_application}  -o "${out_dir}" iso "${iso_name}-${iso_version}-x86_64.iso"
+mkarchiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -P "${iso_publisher}" -A "${iso_application}"  -o "${out_dir}" iso "${iso_name}-${iso_version}-x86_64.iso"
