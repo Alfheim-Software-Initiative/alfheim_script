@@ -1,9 +1,0 @@
-
-#!/bin/bash
-
-echo "Set up pacman keys"
-pacman-key --init
-pacman-key --populate archlinux
-#pacman-key --add /etc/publickey.asc
-#pacman-key --lsign-key 97BEEEC2
-pacman-key --populate openrc
