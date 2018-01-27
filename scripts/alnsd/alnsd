@@ -37,8 +37,8 @@ system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
 system('umount -l work/airootfs');
-system('cp -rf scripts/alnsd/skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/archlive/');
-system('cp -rf scripts/alnsd/skel/root/{.config/,.bash_profile,.bashrc,.profile,.xinitrc} work/airootfs/home/root/');
+system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/home/archlive/');
+system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/home/archlive/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
 system('umount -l work/airootfs');
 
