@@ -52,4 +52,4 @@ mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux -g /boot/alfhe
 
 tar xvf /home/archlive/root.tar.gz -C /home/archlive/
 tar xvf /home/archlive/root.tar.gz -C /root/
-tar xvf /home/archlive/etc.tar.gz -C /etc/
+#tar xvf /home/archlive/etc.tar.gz -C /etc/
