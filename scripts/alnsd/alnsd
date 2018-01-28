@@ -5,6 +5,8 @@ if ( $< != 0 ) {
 	exit (0);
 }
 
+system('clear');
+
 print "\nWelcome to Alfheim Linux non-systemd Build Toolkit!\n";
 print "Here we are going to work together to build the best system\n";
 print "that we can to suit your needs.  A lot of the software that\n";
@@ -26,19 +28,22 @@ system('/usr/bin/chmod a+x scripts/alnsd/packages');
 mkpath "work/airootfs/var/lib/pacman";
 mkdir "work/airootfs/etc/initcpio/hooks";
 mkdir "work/airootfs/etc/initcpio/install";
+mkpath "work/airootfs/home/archlive";
 
 system('/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy base syslinux package-query yaourt');
 system 'cp' , 'scripts/alnsd/packages' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/pre-config.sh' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
+system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
 system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
-system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
+system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/home/archlive/');
+system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/home/archlive/');
 
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
 system('umount -l work/airootfs');
-system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/home/archlive/');
-system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/home/archlive/');
+system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
+system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
 system('umount -l work/airootfs');
 
