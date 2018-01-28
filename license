@@ -1,0 +1,44 @@
+#!/usr/bin/perl
+
+print "########################################################################\n";
+print "#                        HLIN Public License v.2.0                     #\n";
+print "#                                                                      #\n";
+print "# Terms and Conditions for Copying, Modifying, and Distributing        #\n";
+print "# Software, Documentations, and other works.                           #\n";
+print "#                                                                      #\n";
+print "# Do whatever you want in regards to this software (either in source   #\n";
+print "# or binary form), any and all documents, and all works released under #\n";
+print "# this license.                                                        #\n";
+print "#                                                                      #\n";
+print "# In jurisdictions that recognize copyright laws, the author or        #\n";
+print "# authors of this software, documentation, and/or works dedicate any   #\n";
+print "# and all copyright interest in the software, documentation, or        #\n";
+print "# further works to the public domain. We make this dedication for the  #\n";
+print "# benefit of the public at large and to the detriment of our heirs and #\n";
+print "# successors. We intend this dedication to be an overt act of          #\n";
+print "# relinquishment in perpetuity of all present and future rights to     #\n";
+print "# these works under copyright law.                                     #\n";
+print "#                                                                      #\n";
+print "# These terms and conditions are not permission to use the names of    #\n";
+print "# any project, developer, or person that releases their software,      #\n";
+print "# documentation or works under this license in marketing,              #\n";
+print "# advertisement, or publicity of your project, group or self.  Neither #\n";
+print "# does it permit you to make claims that you are associated with or    #\n";
+print "# part of said projects, developers, or person at any time.  Please    #\n";
+print "# respect these projects, developers, and people as they respect you   #\n";
+print "# by providing you with these works.                                   #\n";
+print "#                                                                      #\n";
+print "# THESE SOFTWARE, DOCUMENTATION, AND/OR WORKS ARE PROVIDED \"AS IS\",    #\n";
+print "# WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT  #\n";
+print "# LIMITED TO THEIR WARRANTIES OF MERCHANTABILITY, FITNESS FOR A        #\n";
+print "# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE        #\n";
+print "# AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER #\n";
+print "# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR #\n";
+print "# IN CONNECTION WITH THE SOFTWARE, DOCUMENTATION, AND/OR WORKS OR THE  #\n";
+print "# USE OR OTHER DEALINGS IN THE SOFTWARE, DOCUMENTATION, AND/OR WORKS.  #\n";
+print "########################################################################\n";
+
+print "\n\nPress Enter to go back to the main menu. ";
+my $resp = <STDIN>;
+
+system('/usr/bin/perl ./alfheim');
