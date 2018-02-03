@@ -30,7 +30,64 @@ mkdir "work/airootfs/etc/initcpio/hooks";
 mkdir "work/airootfs/etc/initcpio/install";
 mkpath "work/airootfs/home/archlive";
 
-system('/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy base syslinux package-query yaourt');
+my $base_system = qq{bash
+cryptsetup
+device-mapper
+gcc-libs
+gzip
+iproute2
+linux
+lvm2
+nano
+bzip2
+coreutils
+dhcpcd
+diffutils
+e2fsprogs
+elogind-openrc
+file
+filesystem
+findutils
+gawk
+gettext
+glibc
+grep
+inetutils
+iputils
+jfsutils
+less
+licenses
+logrotate
+man-db
+man-pages
+mdadm
+netifrc
+pacman
+pciutils
+pcmciautils
+perl
+procps-ng
+psmisc
+reiserfsprogs
+s-nail
+sed
+shadow
+sysfsutils
+tar
+texinfo
+usbutils
+util-linux
+vi
+which
+xfsprogs
+syslinux
+package-query
+yaourt};
+
+$base_system =~ s{\n}{ }g;
+
+system("/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy --needed --noconfirm $base_system");
+
 system 'cp' , 'scripts/alnsd/packages' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/pre-config.sh' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
