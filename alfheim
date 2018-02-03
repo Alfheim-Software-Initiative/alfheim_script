@@ -18,6 +18,14 @@ system('clear');
 use strict;
 use warnings;
 
+print "\n\n\n\n\n\nThis script requires Perl's File::Slurp module.\n\n";
+print "In order to make sure that we have the current version we will install the newest version here.
+Do note that if you haven't used CPAN yet on the system it will ask if you want to configure it.
+The default configuration is fine for this project.";
+
+print "\n\nPress Enter to continue: ";
+my $resp2 = <STDIN>;
+
 my $script_path = \$ENV{PWD};
 
 system('cpan install File::Slurp');
@@ -74,7 +82,7 @@ my @menu_gentoo;
 	{ text  => 'View the License for Alfheim Software',
     		code  => sub { exec ('./license') } },
 	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } }
+		code => sub { menu( @menu_choices ) } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
 );
@@ -87,7 +95,7 @@ my @menu_gentoo;
 	{ text  => 'View the License for Alfheim Software',
     		code  => sub { exec ('./license') } },
 	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } }
+		code => sub { menu( @menu_choices ) } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
 );
@@ -100,7 +108,7 @@ my @menu_gentoo;
 	{ text  => 'View the License for Alfheim Software',
     		code  => sub { exec ('./license') } },
 	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } }
+		code => sub { menu( @menu_choices ) } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
 );
@@ -113,7 +121,7 @@ my @menu_gentoo;
 	{ text  => 'View the License for Alfheim Software',
     		code  => sub { exec ('./license') } },
 	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } }
+		code => sub { menu( @menu_choices ) } },
 	{ text  => 'Exit',
 		code  => sub { print "Thanks for choosing Alfheim!\n" } }
 );
