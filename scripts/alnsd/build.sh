@@ -8,7 +8,7 @@ set -e -u
 ## Begin Editable Section
 iso_name=alfheim
 iso_label="alfheim"
-iso_version="BETA_0.3.28"
+iso_version="BETA_0.3.41"
 install_dir=alfheim
 work_dir=work
 out_dir=out
