@@ -8,21 +8,28 @@ locale-gen
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 usermod -s /usr/bin/zsh root
-chmod 700 /root
+
+useradd -m -p "" -g users -G "adm,audio,floppy,log,network,rfkill,scanner,storage,optical,power,wheel,disk,sys" -s /usr/bin/zsh archlive
+
+tar xvf /root/root.tar.gz -C /home/archlive/
+tar xvf /root/root.tar.gz -C /root/
+
+tar pxvf /home/root/etc.tar.gz -C /etc/
+
+# Create the dbus user if it doesn't exist
+#[[ $(check_dbus group) = "" ]] && groupadd -g 81 dbus
+#[[ $(check_dbus passwd) = "" ]] && useradd -r -s /sbin/nologin -g 81 -u 81 dbus
+
+#chmod 750 /etc/sudoers.d
+#chmod 440 /etc/sudoers.d/g_wheel
+
+#sed -i "s/_DATE_/RC1_0.4.1/" /etc/motd
 
 sed -i 's/#\(PermitRootLogin \).\+/\1yes/' /etc/ssh/sshd_config
 sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist
 
-chmod 777 /etc/pacman.d/mirrorlist
-chmod 777 /etc/pacman.d/mirrorlist-arch
-chmod 777 /etc/pacman.d/mirrorlist-artix
-
-groupadd sudo
-groupmod -g 900 sudo
 echo "root:toorpassword" | chpasswd
-useradd -d /home/archlive -g wheel archlive
 echo "archlive:archlive" | chpasswd
-usermod -aG sudo archlive
 
 pacman-key --init
 pacman-key --populate artix
@@ -32,7 +39,9 @@ chown -R archlive /home/archlive
 
 echo " " >> /etc/sudoers
 echo "archlive ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo " " >> /etc/sudoers
+echo "%wheel  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-su archlive -c "yaourt -Sy --noconfirm auto-auto-complete texman i3lock-fancy-git netcfg google-chrome-dev yaourt-gui atom-editor-bin zpaq obmenu-generator obmenu unetbootin"
+su archlive -c "yaourt -Sy --noconfirm auto-auto-complete texman i3lock-fancy-git netcfg google-chrome-dev yaourt-gui ambiance-radiance-colors-suite atom-editor-bin zpaq obmenu-generator obmenu unetbootin gitg-git monodevelop-git"
 
-tar xvf /home/archlive/etc.tar.gz -C /etc/
+#tar pxvf /home/archlive/etc.tar.gz -C /etc/
