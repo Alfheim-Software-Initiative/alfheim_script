@@ -33,6 +33,10 @@ print "\n\n";
 
 system('clear');
 
+print "\n\n\n\n\n Clearing the work/ and out/ directory for a fresh build!";
+system('sudo rm -rf work out');
+system('clear');
+
 sub menu {
 	my @items = @_;
 
@@ -55,19 +59,10 @@ sub menu {
 
 my @menu_choices;
 my @menu_arch;
-my @menu_debian;
-my @menu_fedora;
-my @menu_gentoo;
 
 @menu_choices = (
 	{ text  => 'Arch Based Distribution',
 		code  => sub { menu( @menu_arch ) } },
-	{ text  => 'Debian Based Distribution',
-		code  => sub { menu( @menu_debian ) } },
-	{ text  => 'Fedora Based Distribution',
-		code  => sub { menu( @menu_fedora ) } },
-	{ text  => 'Gentoo Based Distribution',
-		code  => sub { menu( @menu_gentoo ) } },
 	{ text  => 'View the License for Alfheim Software',
     		code  => sub { exec ('./license') } },
 	{ text  => 'Exit',
@@ -77,49 +72,6 @@ my @menu_gentoo;
 @menu_arch = (
 	{ text  => 'Create a non-systemd disc (preferred)',
 		code  => sub { exec ('scripts/alnsd/alnsd') } },
-	{ text  => 'Create a systemd disc (discouraged, non-working)',
-		code  => sub { exec ('scripts/alsd/alsd') } },
-	{ text  => 'View the License for Alfheim Software',
-    		code  => sub { exec ('./license') } },
-	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-@menu_debian = (
-	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/dlnsd/dlnsd') } },
-	{ text  => 'Create a systemd disc (discouraged, non-working)',
-		code  => sub { exec ('scripts/dlsd/dlsd') } },
-	{ text  => 'View the License for Alfheim Software',
-    		code  => sub { exec ('./license') } },
-	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-@menu_fedora = (
-	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/flnsd/flnsd') } },
-	{ text  => 'Create a systemd disc (discouraged, non-working)',
-		code  => sub { exec ('scripts/flsd/flsd') } },
-	{ text  => 'View the License for Alfheim Software',
-    		code  => sub { exec ('./license') } },
-	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-@menu_gentoo = (
-	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/glnsd/glnsd') } },
-	{ text  => 'Create a systemd disc (discouraged, non-working)',
-		code  => sub { exec ('scripts/glsd/glsd') } },
-	{ text  => 'View the License for Alfheim Software',
-    		code  => sub { exec ('./license') } },
 	{ text => 'Main Menu',
 		code => sub { menu( @menu_choices ) } },
 	{ text  => 'Exit',
