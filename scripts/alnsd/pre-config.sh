@@ -3,7 +3,7 @@
 /usr/bin/packages
 
 ## Add the archlive user home for AUR access
-mkdir -p /home/archlive/{Desktop,Downloads,Music,Pictures,Public,Templates,Videos}
+#mkdir -p /home/archlive/{Desktop,Downloads,Music,Pictures,Public,Templates,Videos}
 
 ## Add the right items to startup so we have access to our hardware
 rc-update add acpid default
@@ -21,6 +21,8 @@ rc-update add syslog-ng default
 rc-update add udev boot
 rc-update add elogind boot
 rc-update add dbus boot
+rc-update add NetworkManager default
+rc-update add pacman-init default
 
 ## Generate pacman keyrings
 pacman-key --init
@@ -49,7 +51,3 @@ cp /usr/lib/initcpio/install/archiso_kms /etc/initcpio/install
 cp /usr/lib/initcpio/archiso_shutdown /etc/initcpio
 
 mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux -g /boot/alfheim.img
-
-tar xvf /home/archlive/root.tar.gz -C /home/archlive/
-tar xvf /home/archlive/root.tar.gz -C /root/
-#tar xvf /home/archlive/etc.tar.gz -C /etc/
