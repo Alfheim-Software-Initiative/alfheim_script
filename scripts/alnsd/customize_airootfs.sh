@@ -42,6 +42,9 @@ echo "archlive ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo " " >> /etc/sudoers
 echo "%wheel  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+## Install AUR specific packages
 su archlive -c "yaourt -Sy --noconfirm auto-auto-complete texman i3lock-fancy-git netcfg google-chrome-dev yaourt-gui ambiance-radiance-colors-suite atom-editor-bin zpaq obmenu-generator obmenu unetbootin gitg-git monodevelop-git"
+## Install Rust
+su archlive -c "curl https://sh.rustup.rs -sSf | sh"
 
 #tar pxvf /home/archlive/etc.tar.gz -C /etc/
