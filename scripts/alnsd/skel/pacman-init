@@ -1,0 +1,32 @@
+#!/usr/bin/openrc-run
+# Copyright (C) 2017 Parabola Project
+# Copyright (C) Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# Modified for use with Alfheim Linux
+
+description="Initializes Pacman keyring"
+
+depend() {
+    use haveged
+    after haveged
+}
+
+start() {
+    # Check that there's no keyring, if there isn't, create one
+    # in the background for a faster boot
+    if [ ! -d /etc/pacman.d/gnupg ]; then
+    ebegin "Starting Pacman keyring"
+    pacman-key --init &> /dev/null &&
+    pacman-key --populate archlinux artix &> /dev/null
+    else
+    ebegin "Pacman keyring already started"
+    fi
+}
+
+stop() {
+    # If there's a keyring, delete it
+    if [ -d /etc/pacman.d/gnupg ]; then
+    ebegin "Stoping Pacman keyring"
+    rm -rf /etc/pacman.d/gnupg
+    fi
+}
