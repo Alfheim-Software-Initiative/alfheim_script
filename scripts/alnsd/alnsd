@@ -25,6 +25,14 @@ my $script_root = \$ENV{PWD};
 system('/usr/bin/chmod a+x scripts/alnsd/pre-config.sh');
 system('/usr/bin/chmod a+x scripts/alnsd/packages');
 
+print "Creating airootfs filesystem\n";
+
+mkpath "work/airootfs";
+mkdir "rootfs";
+system('dd if=/dev/zero of=rootfs/rootfs.img bs=1M count=30000');
+system('mkfs.ext4 rootfs/rootfs.img');
+system('mount rootfs/rootfs.img work/airootfs');
+
 mkpath "work/airootfs/var/lib/pacman";
 mkdir "work/airootfs/etc/initcpio/hooks";
 mkdir "work/airootfs/etc/initcpio/install";
@@ -94,15 +102,16 @@ system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-ar
 system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
 system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
+system('cp -rf scripts/alnsd/skel/pacman-init work/airootfs/init.d/')
 system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/root/');
 system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/root/');
 
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
-system('umount -l work/airootfs');
+#system('umount -l work/airootfs');
 system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
 system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
-system('umount -l work/airootfs');
+#system('umount -l work/airootfs');
 
 ## The following will create the iso directory
 ## Copy the contents of the build directory to the iso directory
