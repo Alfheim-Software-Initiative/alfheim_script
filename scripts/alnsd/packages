@@ -9,6 +9,8 @@ system('pacman-key --populate archlinux');
 system('update-ca-trust');
 
 my $core_system = qq{abiword
+acpid
+acpid-openrc
 alsa-utils
 arch-install-scripts
 archiso
@@ -18,6 +20,8 @@ archlinux-xdg-menu
 artix-keyring
 artix-mirrorlist
 autoconf
+autofs
+autofs-openrc
 automake
 binutils
 bison
