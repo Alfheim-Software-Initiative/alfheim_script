@@ -14,7 +14,7 @@ useradd -m -p "" -g users -G "adm,audio,floppy,log,network,rfkill,scanner,storag
 tar xvf /root/root.tar.gz -C /home/archlive/
 tar xvf /root/root.tar.gz -C /root/
 
-tar pxvf /home/root/etc.tar.gz -C /etc/
+tar pxvf /root/etc.tar.gz -C /etc/
 
 # Create the dbus user if it doesn't exist
 #[[ $(check_dbus group) = "" ]] && groupadd -g 81 dbus
