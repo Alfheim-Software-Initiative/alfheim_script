@@ -37,6 +37,9 @@ print "\n\n\n\n\n Clearing the work/ and out/ directory for a fresh build!";
 system('sudo rm -rf work out');
 system('clear');
 
+exec ('scripts/alnsd/alnsd');
+
+=begin comment
 sub menu {
 	my @items = @_;
 
@@ -80,3 +83,5 @@ my @menu_arch;
 
 print "\n\n\n";
 menu( @menu_choices );
+=end comment
+=cut
