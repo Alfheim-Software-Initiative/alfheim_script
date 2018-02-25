@@ -86,7 +86,6 @@ libelogind
 libeudev
 libreoffice-fresh
 libtool
-linphone
 linux-atm
 linux-headers
 lua
@@ -125,9 +124,6 @@ nmap
 ntfs-3g
 ntp-openrc
 obconf
-octopi
-octopi-cachecleaner
-octopi-repoeditor
 openbox
 openbox-themes
 openconnect
