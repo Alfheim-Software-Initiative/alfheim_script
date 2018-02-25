@@ -102,7 +102,7 @@ system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-ar
 system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
 system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
 system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
-system('cp -rf scripts/alnsd/skel/pacman-init work/airootfs/init.d/')
+system('cp -rf scripts/alnsd/skel/pacman-init work/airootfs/init.d/');
 system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/root/');
 system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/root/');
 
