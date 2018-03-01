@@ -26,6 +26,7 @@ automake
 binutils
 bison
 btrfs-progs
+compton
 crda
 darkhttpd
 dbus-openrc
@@ -39,7 +40,6 @@ dnsmasq
 dnsutils
 dosfstools
 efitools
-elinks
 elixir
 elogind-openrc
 epdfview
@@ -55,6 +55,7 @@ galculator-gtk2
 gawk
 gcc
 gettext
+gimp
 gksu
 gnome-keyring
 gnome-screenshot
@@ -80,8 +81,6 @@ intel-ucode
 irssi
 jdk8-openjdk
 jdk9-openjdk
-leafpad
-lftp
 libelogind
 libeudev
 libreoffice-fresh
@@ -143,11 +142,9 @@ pavucontrol
 pcmanfm
 pidgin
 pkg-config
-polkit-elogind
 ppp
 pptpclient
 pulseaudio-alsa
-qtox
 rave-x-colors
 refind-efi
 rfkill
@@ -155,8 +152,6 @@ rp-pppoe
 rsync-openrc
 sed
 smartmontools
-smplayer
-sudo
 sudo
 tcpdump
 testdisk
@@ -169,12 +164,12 @@ usb_modeswitch
 util-linux
 virtualbox-guest-dkms
 virtualbox-guest-utils-openrc
+vlc
 vpnc
 wget
 which
 wireless_tools
 wpa_actiond
-wpa_supplicant-openrc
 wpa_supplicant-openrc
 wvdial
 xarchiver
