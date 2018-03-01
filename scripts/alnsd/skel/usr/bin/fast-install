@@ -8,14 +8,39 @@
 # for Alfheim Linux
 #
 
+# check for root
+[[ ${EUID} -ne 0 ]] && echo "::This script must be run as root::" && exit 1
+
+echo "This script assumes you want to install Alfheim on /dev/sda."
+echo "If this is not what you intend to do exit and edit /usr/bin/fast-install"
+echo "so that the first gparted reflects what you want to accomplish."
+echo " "
+echo "This script also assumes that you create a /boot partition on /dev/sda1"
+echo "and a / partition on /dev/sda2, it makes no assumptions about other partitions."
+echo "This can be changed in the mount section of /usr/bin/fast-install."
+
+read -p "Press Enter to Continue"
+
+# Run gparted to format drive
+gparted /dev/sda
+
+read -p "Press Enter to Continue"
+
+##
+## EDIT THIS SECTION IF YOU USE A DIFFERENT PARTITION SCHEME
+## THAN /boot ON /dev/sda1 AND / ON /dev/sda2!
+##
+
+# Mount the partitions you just created
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
 # Device mounted?
 if ! mountpoint -q /mnt; then
     echo "Make sure target device is mounted..."
     exit 1
 fi
-
-# check for root
-[[ ${EUID} -ne 0 ]] && echo "::This script must be run as root::" && exit 1
 
 # Variables
 ACM="arch-chroot /mnt"
