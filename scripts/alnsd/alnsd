@@ -9,7 +9,7 @@ system('clear');
 
 print "\nWelcome to Alfheim Linux non-systemd Build Toolkit!\n";
 print "Here we are going to work together to build the best system\n";
-print "that we can to suit your needs.  A lot of the software that\n";
+print "that we can to suit your needs.  A lot of the software that you\n";
 print "may use on a regular basis may not be installed right out of\n";
 print "the gate but we will do our best to accomodate you.\n";
 
@@ -25,6 +25,7 @@ my $script_root = \$ENV{PWD};
 system('/usr/bin/chmod a+x scripts/alnsd/pre-config.sh');
 system('/usr/bin/chmod a+x scripts/alnsd/packages');
 
+## Workaround for an arch-chroot issue with installing packages.
 print "Creating airootfs filesystem\n";
 
 mkpath "work/airootfs";
@@ -33,11 +34,13 @@ system('dd if=/dev/zero of=rootfs/rootfs.img bs=1M count=30000');
 system('mkfs.ext4 rootfs/rootfs.img');
 system('mount rootfs/rootfs.img work/airootfs');
 
+## Create some initial directories needed for the build
 mkpath "work/airootfs/var/lib/pacman";
 mkdir "work/airootfs/etc/initcpio/hooks";
 mkdir "work/airootfs/etc/initcpio/install";
 mkpath "work/airootfs/home/archlive";
 
+## Installs the base packages
 my $base_system = qq{bash
 cryptsetup
 device-mapper
@@ -96,6 +99,7 @@ $base_system =~ s{\n}{ }g;
 
 system("/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy --needed --noconfirm $base_system");
 
+## Copies support files to the right directories for the build
 system 'cp' , 'scripts/alnsd/packages' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/pre-config.sh' , 'work/airootfs/usr/bin/';
 system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
@@ -105,13 +109,22 @@ system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
 system('cp -rf scripts/alnsd/skel/pacman-init work/airootfs/init.d/');
 system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/root/');
 system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/root/');
+system('cp -rf scripts/alnsd/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
 
+## Builds the main file structure and installs all the programs
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
-#system('umount -l work/airootfs');
 system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
 system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
-#system('umount -l work/airootfs');
+
+## Copies the branding to the necessary files
+system('mv work/airootfs/usr/share/lxde/images/logout-banner.png work/airootfs/usr/share/lxde/images/logout-banner-orig.png');
+system('mv work/airootfs/usr/share/lxde/images/lxde-icon.png work/airootfs/usr/share/lxde/images/lxde-icon-orig.png');
+system('cp -rf scripts/alnsd/skel/usr/share/lxde/images/logout-banner.png work/airootfs/usr/share/lxde/images/');
+system('cp -rf scripts/alnsd/skel/usr/share/lxde/images/lxde-icon.png work/airootfs/usr/share/lxde/images/');
+mkdir 'work/airootfs/usr/share/boot';
+system('cp -rf scripts/alnsd/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
+system('cp -rf scripts/alnsd/skel/usr/bin/fast-install work/airootfs/usr/bin/');
 
 ## The following will create the iso directory
 ## Copy the contents of the build directory to the iso directory
