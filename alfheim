@@ -37,51 +37,5 @@ print "\n\n\n\n\n Clearing the work/ and out/ directory for a fresh build!";
 system('sudo rm -rf work out');
 system('clear');
 
-exec ('scripts/alnsd/alnsd');
+exec ('scripts/alnsd');
 
-=begin comment
-sub menu {
-	my @items = @_;
-
-	my $count = 0;
-	foreach my $item( @items ) {
-		printf "%d: %s\n", ++$count, $item->{text};
-	}
-
-	print "\nChoose an option? : ";
-
-	while( my $line = <STDIN> ) {
-		chomp $line;
-		if ( $line =~ m/\d+/ && $line <= @items ) {
-			return $items[ $line - 1 ]{code}->();
-		}
-
-		print "\nInvalid input\n\n?: ";
-	}
-}
-
-my @menu_choices;
-my @menu_arch;
-
-@menu_choices = (
-	{ text  => 'Arch Based Distribution',
-		code  => sub { menu( @menu_arch ) } },
-	{ text  => 'View the License for Alfheim Software',
-    		code  => sub { exec ('./license') } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-@menu_arch = (
-	{ text  => 'Create a non-systemd disc (preferred)',
-		code  => sub { exec ('scripts/alnsd/alnsd') } },
-	{ text => 'Main Menu',
-		code => sub { menu( @menu_choices ) } },
-	{ text  => 'Exit',
-		code  => sub { print "Thanks for choosing Alfheim!\n" } }
-);
-
-print "\n\n\n";
-menu( @menu_choices );
-=end comment
-=cut

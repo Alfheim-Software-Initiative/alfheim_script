@@ -56,7 +56,6 @@ gawk
 gcc
 gettext
 gimp
-gksu
 gnome-keyring
 gnome-screenshot
 gnu-netcat
@@ -79,8 +78,7 @@ haveged-openrc
 hdparm-openrc
 intel-ucode
 irssi
-jdk8-openjdk
-jdk9-openjdk
+jdk10-openjdk
 libelogind
 libeudev
 libreoffice-fresh
@@ -145,7 +143,6 @@ pkg-config
 ppp
 pptpclient
 pulseaudio-alsa
-rave-x-colors
 refind-efi
 rfkill
 rp-pppoe

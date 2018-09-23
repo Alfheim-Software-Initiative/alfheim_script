@@ -1,0 +1,4 @@
+# Worldwide mirrors
+Server = https://mirror.clarkson.edu/artix-linux/repos/$repo/os/$arch
+Server = https://ftp.sh.cvut.cz/artix-linux/$repo/os/$arch
+Server = https://ftp.cc.uoc.gr/mirrors/linux/artixlinux/$repo/os/$arch

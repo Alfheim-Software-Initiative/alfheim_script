@@ -19,8 +19,8 @@ rc-update add smb default
 rc-update add sshd default
 rc-update add syslog-ng default
 rc-update add udev boot
-rc-update add elogind boot
-rc-update add dbus boot
+#rc-update add elogind boot
+#rc-update add dbus boot
 rc-update add NetworkManager default
 rc-update add pacman-init default
 

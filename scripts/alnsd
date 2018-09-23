@@ -22,8 +22,8 @@ use File::Path;
 
 my $script_root = \$ENV{PWD};
 
-system('/usr/bin/chmod a+x scripts/alnsd/pre-config.sh');
-system('/usr/bin/chmod a+x scripts/alnsd/packages');
+system('/usr/bin/chmod a+x scripts/pre-config.sh');
+system('/usr/bin/chmod a+x scripts/packages');
 
 ## Workaround for an arch-chroot issue with installing packages.
 print "Creating airootfs filesystem\n";
@@ -97,34 +97,34 @@ yaourt};
 
 $base_system =~ s{\n}{ }g;
 
-system("/usr/bin/yaourt --config scripts/alnsd/pacman.conf -r work/airootfs -Sy --needed --noconfirm $base_system");
+system("/usr/bin/yaourt --config scripts/pacman.conf -r work/airootfs -Sy --needed --noconfirm $base_system");
 
 ## Copies support files to the right directories for the build
-system 'cp' , 'scripts/alnsd/packages' , 'work/airootfs/usr/bin/';
-system 'cp' , 'scripts/alnsd/pre-config.sh' , 'work/airootfs/usr/bin/';
-system 'cp' , 'scripts/alnsd/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
-system 'cp' , 'scripts/alnsd/customize_airootfs.sh' , 'work/airootfs/usr/bin';
-system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
-system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
-system('cp -rf scripts/alnsd/skel/pacman-init work/airootfs/init.d/');
-system('cp -rf scripts/alnsd/skel/root.tar.gz work/airootfs/root/');
-system('cp -rf scripts/alnsd/skel/etc.tar.gz work/airootfs/root/');
-system('cp -rf scripts/alnsd/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
+system 'cp' , 'scripts/packages' , 'work/airootfs/usr/bin/';
+system 'cp' , 'scripts/pre-config.sh' , 'work/airootfs/usr/bin/';
+system 'cp' , 'scripts/mkinitcpio.conf' , 'work/airootfs/etc/mkinitcpio-archiso.conf';
+system 'cp' , 'scripts/customize_airootfs.sh' , 'work/airootfs/usr/bin';
+system 'cp' , 'scripts/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
+system('cp -rf scripts/pacman.d work/airootfs/etc/');
+system('cp -rf scripts/skel/pacman-init work/airootfs/init.d/');
+system('cp -rf scripts/skel/root.tar.gz work/airootfs/root/');
+system('cp -rf scripts/skel/etc.tar.gz work/airootfs/root/');
+system('cp -rf scripts/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
 
 ## Builds the main file structure and installs all the programs
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'pre-config.sh\'');
-system 'cp' , 'scripts/alnsd/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
-system('cp -rf scripts/alnsd/pacman.d work/airootfs/etc/');
+system 'cp' , 'scripts/pacman_final.conf' , 'work/airootfs/etc/pacman.conf';
+system('cp -rf scripts/pacman.d work/airootfs/etc/');
 system('/usr/bin/arch-chroot work/airootfs /bin/bash \'customize_airootfs.sh\'');
 
 ## Copies the branding to the necessary files
 system('mv work/airootfs/usr/share/lxde/images/logout-banner.png work/airootfs/usr/share/lxde/images/logout-banner-orig.png');
 system('mv work/airootfs/usr/share/lxde/images/lxde-icon.png work/airootfs/usr/share/lxde/images/lxde-icon-orig.png');
-system('cp -rf scripts/alnsd/skel/usr/share/lxde/images/logout-banner.png work/airootfs/usr/share/lxde/images/');
-system('cp -rf scripts/alnsd/skel/usr/share/lxde/images/lxde-icon.png work/airootfs/usr/share/lxde/images/');
+system('cp -rf scripts/skel/usr/share/lxde/images/logout-banner.png work/airootfs/usr/share/lxde/images/');
+system('cp -rf scripts/skel/usr/share/lxde/images/lxde-icon.png work/airootfs/usr/share/lxde/images/');
 mkdir 'work/airootfs/usr/share/boot';
-system('cp -rf scripts/alnsd/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
-system('cp -rf scripts/alnsd/skel/usr/bin/fast-install work/airootfs/usr/bin/');
+system('cp -rf scripts/skel/usr/share/boot/splash.png work/airootfs/usr/share/boot/');
+system('cp -rf scripts/skel/usr/bin/fast-install work/airootfs/usr/bin/');
 
 ## The following will create the iso directory
 ## Copy the contents of the build directory to the iso directory
@@ -132,5 +132,5 @@ system('cp -rf scripts/alnsd/skel/usr/bin/fast-install work/airootfs/usr/bin/');
 ## Make an iso from the iso directory
 
 ## Using build.sh to build the iso
-system('/usr/bin/chmod a+x scripts/alnsd/build.sh');
-system('/usr/bin/bash scripts/alnsd/build.sh');
+system('/usr/bin/chmod a+x scripts/build.sh');
+system('/usr/bin/bash scripts/build.sh');

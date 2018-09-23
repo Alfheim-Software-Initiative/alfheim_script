@@ -29,7 +29,7 @@ echo " " >> /etc/sudoers
 echo "%wheel  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ## Install AUR specific packages
-su archlive -c "yaourt -Sy --noconfirm auto-auto-complete compiz-manager texman i3lock-fancy-git netcfg google-chrome-dev yaourt-gui ambiance-radiance-colors-suite atom-editor-bin zpaq obmenu-generator obmenu unetbootin gitg-git rust-always-nightly-bin"
+su archlive -c "yaourt -Sy --noconfirm auto-auto-complete compiz-manager texman i3lock-fancy-git netcfg google-chrome-dev gksu ambiance-radiance-colors-suite atom-editor-bin zpaq obmenu-generator obmenu unetbootin gitg-git rust-nightly-bin"
 
 tar xvf /root/root.tar.gz -C /home/archlive/
 tar xvf /root/root.tar.gz -C /root/

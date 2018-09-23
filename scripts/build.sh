@@ -8,7 +8,7 @@ set -e -u
 ## Begin Editable Section
 iso_name=alfheim
 iso_label="alfheim"
-iso_version="RC1_0.4.0"
+iso_version="2.0_Alpha_0.0.6"
 install_dir=alfheim
 work_dir=work
 out_dir=out
@@ -21,7 +21,7 @@ verbose=""
 
 script_path=$(readlink -f ${0%/*})
 
-# Copy scripts/alnsd/etc to root
+# Copy scripts/etc to root
 #cp -rf ${script_path}/skel/etc/* ${work_dir}/airootfs/etc/.
 
 # Prepare kernel/initramfs ${install_dir}
@@ -38,7 +38,7 @@ cp ${work_dir}/airootfs/usr/share/licenses/intel-ucode/LICENSE ${work_dir}/iso/$
 # Prepare /${install_dir}/boot/syslinux
 mkdir -p ${work_dir}/iso/${install_dir}/boot/syslinux
 for _cfg in ${script_path}/syslinux/*.cfg; do
-    sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+    sed "s|%ALFHEIMISO_LABEL%|${iso_label}|g;
          s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
 done
 cp ${script_path}/syslinux/splash.png ${work_dir}/iso/${install_dir}/boot/syslinux
@@ -68,7 +68,7 @@ cp ${script_path}/efiboot/loader/loader.conf ${work_dir}/iso/loader/
 cp ${script_path}/efiboot/loader/entries/uefi-shell-v2-x86_64.conf ${work_dir}/iso/loader/entries/
 cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/iso/loader/entries/
 
-sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+sed "s|%ALFHEIMISO_LABEL%|${iso_label}|g;
      s|%INSTALL_DIR%|${install_dir}|g" \
     ${script_path}/efiboot/loader/entries/archiso-x86_64-usb.conf > ${work_dir}/iso/loader/entries/archiso-x86_64.conf
 
@@ -89,7 +89,7 @@ mkdir -p ${work_dir}/efiboot/EFI/archiso
 cp ${work_dir}/iso/${install_dir}/boot/x86_64/vmlinuz ${work_dir}/efiboot/EFI/archiso/vmlinuz.efi
 cp ${work_dir}/iso/${install_dir}/boot/x86_64/alfheim.img ${work_dir}/efiboot/EFI/archiso/alfheim.img
 
-cp ${work_dir}/iso/${install_dir}/boot/intel_ucode.img ${work_dir}/efiboot/EFI/archiso/intel_ucode.img
+#cp ${work_dir}/iso/${install_dir}/boot/intel_ucode.img ${work_dir}/efiboot/EFI/archiso/intel_ucode.img
 
 mkdir -p ${work_dir}/efiboot/EFI/boot
 cp ${work_dir}/airootfs/usr/share/efitools/efi/PreLoader.efi ${work_dir}/efiboot/EFI/boot/bootx64.efi
@@ -102,7 +102,7 @@ cp ${script_path}/efiboot/loader/loader.conf ${work_dir}/efiboot/loader/
 cp ${script_path}/efiboot/loader/entries/uefi-shell-v2-x86_64.conf ${work_dir}/efiboot/loader/entries/
 cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/efiboot/loader/entries/
 
-sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+sed "s|%ALFHEIMISO_LABEL%|${iso_label}|g;
      s|%INSTALL_DIR%|${install_dir}|g" \
     ${script_path}/efiboot/loader/entries/archiso-x86_64-cd.conf > ${work_dir}/efiboot/loader/entries/archiso-x86_64.conf
 #cp -rf ${script_path}/skel/root/.* ${work_dir}/airootfs/root/.
