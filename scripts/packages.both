@@ -1,14 +1,4 @@
-#!/usr/bin/perl
-
-use strict;
-use warnings;
-
-system('pacman-key --init');
-system('pacman-key --populate artix');
-system('pacman-key --populate archlinux');
-system('update-ca-trust');
-
-my $core_system = qq{abiword
+abiword
 acpid
 acpid-openrc
 alsa-utils
@@ -190,8 +180,4 @@ xscreensaver
 zenity
 zile
 zip
-zsh};
-
-$core_system =~ s{\n}{ }g;
-
-system("/usr/bin/yaourt -Sy --noconfirm --needed $core_system");
+zsh
